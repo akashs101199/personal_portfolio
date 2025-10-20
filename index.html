@@ -1,672 +1,673 @@
 <!DOCTYPE html>
 <html lang="en" class="scroll-smooth">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Akash Shanmuganathan - Professional Tech Portfolio</title>
-  <meta name="description" content="Akash Shanmuganathan's professional portfolio showcasing expertise in Data Engineering, Data Analysis, and Business Analysis. Explore projects, philosophy, and contact information.">
-  <meta name="keywords" content="Akash Shanmuganathan, Data Engineer, Data Analyst, Business Analyst, Portfolio, Python, SQL, Tableau, Power BI, Data Warehousing, ETL">
-  <meta name="author" content="Akash Shanmuganathan">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Akash Shanmuganathan — Data & AI Engineer</title>
+  <meta name="description" content="AWS-certified Data & AI Engineer. I build AI agents and governed data platforms that cut cost, speed decisions, and pass audits." />
+  <link rel="canonical" href="https://your-domain.com/" />
+  <link rel="icon" href="/favicon.ico" />
+  <meta property="og:title" content="Akash Shanmuganathan — Data & AI Engineer" />
+  <meta property="og:description" content="AWS-certified Data & AI Engineer. I build AI agents and governed data platforms that cut cost, speed decisions, and pass audits." />
+  <meta property="og:type" content="website" />
+  <meta property="og:image" content="https://your-domain.com/og-card.png" />
+  <meta name="twitter:card" content="summary_large_image" />
 
+  <script type="application/ld+json">
+  {
+    "@context":"https://schema.org",
+    "@type":"Person",
+    "name":"Akash Shanmuganathan",
+    "jobTitle":"Data & AI Engineer",
+    "url":"https://your-domain.com/",
+    "email":"mailto:akashs101199@gmail.com",
+    "sameAs":["https://www.linkedin.com/in/akash101199/","https://github.com/akashs101199"],
+    "knowsAbout":["AWS Glue","Redshift","Bedrock","LangChain","Spark","Kafka","Python","SQL"]
+  }
+  </script>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
   <script src="https://cdn.tailwindcss.com"></script>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;800;900&display=swap" rel="stylesheet">
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
-
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: { bg: "#0B1020", card: "#0f172a" },
+          boxShadow: { glow: "0 0 0 2px rgba(16,185,129,0.25)" }
+        }
+      }
+    }
+  </script>
   <style>
-    body {
-      font-family: 'Inter', sans-serif;
-      background-color: #0a0a0a;
-      color: #e2e8f0;
-      overflow-x: hidden;
-    }
+    :root{--emerald:#34d399}
+    body{font-family:'Inter',system-ui,-apple-system,Segoe UI,Roboto,Ubuntu,Cantarell,'Helvetica Neue',Arial,"Apple Color Emoji","Segoe UI Emoji"}
+    .glass{background:rgba(11,16,32,.75);backdrop-filter:saturate(180%) blur(12px)}
+    .grad-text{background:linear-gradient(90deg,#a7f3d0,#99f6e4,#bae6fd);-webkit-background-clip:text;background-clip:text;color:transparent}
+    .ring-emerald{box-shadow:0 0 0 1px rgba(52,211,153,.35) inset}
+    .card{border:1px solid rgba(148,163,184,.18)}
+    .metric{border:1px solid rgba(148,163,184,.25)}
+    .hide{transform:translateY(-100%)}
+    #bg3d{position:fixed;inset:0;z-index:-1;pointer-events:none}
 
-    #bg-canvas {
-      position: fixed;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      z-index: -1;
-    }
+    /* Credly badge scaling */
+    .badge-scale{transform:scale(.62);transform-origin:top left;width:150px;height:270px;overflow:hidden}
+    .hide-scrollbar::-webkit-scrollbar{display:none}
+    .hide-scrollbar{scrollbar-width:none}
 
-    .gradient-text {
-      background: linear-gradient(to right, #38bdf8, #818cf8, #c084fc);
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-    }
-
-    .glass-effect {
-      background: rgba(10, 10, 10, 0.5);
-      backdrop-filter: blur(12px);
-      -webkit-backdrop-filter: blur(12px);
-      border: 1px solid rgba(255, 255, 255, 0.1);
-    }
-
-    ::-webkit-scrollbar { width: 8px; }
-    ::-webkit-scrollbar-track { background: #1a1a1a; }
-    ::-webkit-scrollbar-thumb { background: #333; border-radius: 10px; }
-    ::-webkit-scrollbar-thumb:hover { background: #444; }
-
-    .fade-in-section {
-      opacity: 0;
-      transform: translateY(60px);
-      transition: opacity 1.8s ease-out, transform 1.8s ease-out;
-    }
-    .fade-in-section.is-visible {
-      opacity: 1;
-      transform: translateY(0);
-    }
-
-    .tab-button { transition: all 0.3s ease; }
-    .tab-button.active {
-      background: linear-gradient(to right, #38bdf8, #818cf8);
-      color: #fff;
-      transform: translateY(-4px);
-      box-shadow: 0 8px 25px rgba(56, 189, 248, 0.3);
-    }
-    .tab-button:hover:not(.active) {
-      background-color: rgba(255, 255, 255, 0.1);
-      transform: translateY(-2px);
-    }
-
-    .tab-content {
-      display: none;
-      opacity: 0;
-      transform: translateY(20px);
-      transition: opacity 0.5s ease-out, transform 0.5s ease-out;
-    }
-    .tab-content.active {
-      display: block;
-      opacity: 1;
-      transform: translateY(0);
-    }
-
-    .project-card, .timeline-item .glass-effect {
-      transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
-      cursor: pointer;
-    }
-    .project-card:hover, .timeline-item .glass-effect:hover {
-      transform: translateY(-10px) scale(1.03);
-      box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4);
-      border-color: #38bdf8;
-    }
-    
-    .skill-card {
-        transition: all 0.3s ease;
-    }
-    .skill-card:hover {
-        transform: scale(1.05);
-        box-shadow: 0 10px 20px rgba(56, 189, 248, 0.2);
-    }
-
-    .social-icon-link { transition: transform 0.3s ease, color 0.3s ease; }
-    .social-icon-link:hover { transform: translateY(-5px); color: #38bdf8; }
-
-    .section-divider {
-      height: 4px;
-      background: linear-gradient(to right, #38bdf8, #818cf8, #c084fc);
-      width: 120px;
-      margin: 1rem auto 3rem auto;
-      border-radius: 2px;
-      box-shadow: 0 0 20px rgba(56, 189, 248, 0.4);
-    }
-
-    /* Modal */
-    .modal-overlay {
-      position: fixed;
-      top: 0; left: 0;
-      width: 100%; height: 100%;
-      background-color: rgba(0, 0, 0, 0.85);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      z-index: 100;
-      opacity: 0;
-      visibility: hidden;
-      transition: opacity 0.3s ease-in-out, visibility 0.3s ease-in-out;
-    }
-    .modal-overlay.active {
-      opacity: 1;
-      visibility: visible;
-    }
-
-    .modal-content {
-      background-color: #111111;
-      padding: 1rem;
-      border-radius: 1.5rem;
-      box-shadow: 0 15px 50px rgba(0, 0, 0, 0.6);
-      max-width: 95vw;
-      width: 90%;
-      max-height: 90vh;
-      overflow-y: auto;
-      position: relative;
-      transform: scale(0.9);
-      transition: transform 0.3s ease-in-out;
-      border: 1px solid rgba(255, 255, 255, 0.1);
-    }
-    .modal-overlay.active .modal-content { transform: scale(1); }
-
-    .modal-close-button {
-      position: absolute;
-      top: 1rem; right: 1rem;
-      background: none;
-      border: none;
-      font-size: 2rem;
-      color: #9ca3af;
-      cursor: pointer;
-      transition: color 0.2s ease-in-out, transform 0.2s ease-in-out;
-      z-index: 101;
-    }
-    .modal-close-button:hover { color: #fff; transform: rotate(90deg); }
-
-    .timeline {
-      position: relative;
-      max-width: 1200px;
-      margin: 0 auto;
-    }
-    .timeline::after {
-      content: '';
-      position: absolute;
-      width: 2px;
-      background: #374151;
-      top: 0; bottom: 0;
-      left: 50%;
-      margin-left: -1px;
-    }
-    .timeline-item {
-      padding: 10px 40px;
-      position: relative;
-      background-color: inherit;
-      width: 50%;
-    }
-    .timeline-item.left { left: 0; }
-    .timeline-item.right { left: 50%; }
-    .timeline-item::after {
-      content: ' ';
-      position: absolute;
-      width: 20px; height: 20px;
-      right: -10px;
-      background-color: #0a0a0a;
-      border: 4px solid #38bdf8;
-      top: 15px;
-      border-radius: 50%;
-      z-index: 1;
-      box-shadow: 0 0 15px rgba(56, 189, 248, 0.5);
-    }
-    .timeline-item.right::after { left: -10px; }
-    .timeline-item .glass-effect {
-        padding: 1.5rem;
-        border-radius: 0.75rem;
-    }
-
-    @media screen and (max-width: 768px) {
-      .timeline::after { left: 10px; }
-      .timeline-item { width: 100%; padding-left: 40px; padding-right: 15px; }
-      .timeline-item.right { left: 0%; }
-      .timeline-item.left::after, .timeline-item.right::after { left: 0; }
-    }
+    /* Experience readability */
+    .exp-col ul{list-style:disc;padding-left:1.25rem}
+    .exp-col li{margin-bottom:.5rem}
+    .exp-col{max-width:42rem}
   </style>
 </head>
-<body class="antialiased">
-  <canvas id="bg-canvas"></canvas>
+<body class="antialiased bg-bg text-slate-100">
+  <!-- 3D background -->
+  <canvas id="bg3d"></canvas>
 
-  <nav id="navbar" class="glass-effect p-4 fixed w-full z-20 top-0 transition-all duration-300 ease-in-out">
-    <div class="container mx-auto flex justify-between items-center">
-      <a href="#" class="text-2xl font-extrabold tracking-tighter">Akash Shanmuganathan</a>
-      <div class="hidden md:flex space-x-6 items-center">
-        <a href="#about" class="hover:text-sky-400 transition-colors">About</a>
-        <a href="#experience" class="hover:text-sky-400 transition-colors">Experience & Education</a>
-        <a href="#expertise" class="hover:text-sky-400 transition-colors">My Expertise</a>
-        <a href="#philosophy" class="hover:text-sky-400 transition-colors">My Philosophy</a>
-        <a href="#contact" class="hover:text-sky-400 transition-colors">Contact</a>
+  <!-- Header -->
+  <header id="header" class="sticky top-0 z-40 border-b border-slate-800/60 glass transition-transform duration-300">
+    <div class="mx-auto max-w-7xl px-4 py-3 md:px-8 flex items-center justify-between">
+      <a href="#" class="group inline-flex items-center gap-2 text-lg font-bold tracking-wide">
+        <span class="grid h-8 w-8 place-items-center rounded-lg bg-emerald-400/20 text-emerald-300 ring-1 ring-emerald-400/30">AS</span>
+        <span class="text-slate-200 group-hover:text-white">Akash S.</span>
+      </a>
+      <nav class="hidden md:flex gap-8 text-sm">
+        <a href="#about" class="text-slate-300 hover:text-emerald-300">Skills</a>
+        <a href="#skills-impact" class="text-slate-300 hover:text-emerald-300">Impact</a>
+        <a href="#work" class="text-slate-300 hover:text-emerald-300">Projects</a>
+        <a href="#experience" class="text-slate-300 hover:text-emerald-300">Experience</a>
+        <a href="#contact" class="text-slate-300 hover:text-emerald-300">Contact</a>
+      </nav>
+      <div class="hidden md:flex items-center gap-4">
+        <span class="hidden lg:inline-flex items-center gap-2 text-sm text-slate-400">
+          <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7z"/></svg>
+          Cary, NC · Remote-ready
+        </span>
+        <a href="/Akash_Shanmuganathan_Resume.pdf" class="inline-flex items-center gap-2 rounded-md border border-emerald-400/40 px-3 py-2 text-emerald-300 hover:bg-emerald-400/10">
+          <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16v2a2 2 0 002 2h12a2 2 0 002-2v-2M7 10l5 5m0 0l5-5m-5 5V4"/></svg>
+          Resume
+        </a>
+        <a href="#contact" class="inline-flex items-center gap-2 rounded-md bg-emerald-500 px-3 py-2 text-slate-900 hover:bg-emerald-400">Say hello</a>
       </div>
     </div>
-  </nav>
 
-  <header id="hero" class="relative text-slate-300 py-20 md:py-32 flex items-center justify-center min-h-screen pt-16 overflow-hidden">
-    <div class="container mx-auto text-center px-4 relative z-10">
-      <img src="https://raw.githubusercontent.com/akashs101199/akashs101199.github.io/main/Images/profile_image.png" alt="Akash Shanmuganathan" class="w-44 h-44 rounded-full mx-auto mb-8 border-4 border-sky-500 shadow-2xl object-cover object-top transform hover:scale-105 transition duration-300">
-      <h1 class="text-5xl md:text-7xl font-black tracking-tighter leading-tight text-white">Hi, I'm Akash Shanmuganathan</h1>
-      <p class="text-xl md:text-2xl mt-6 mb-10 max-w-3xl mx-auto">A professional focused on <span class="gradient-text font-bold">Data Engineering & Business Analysis</span> to drive strategic decisions.</p>
-      <a href="#expertise" class="bg-sky-500 hover:bg-sky-600 text-white font-bold py-4 px-10 rounded-full shadow-lg transition duration-300 transform hover:scale-105 text-lg">
-        Explore My Expertise <span class="ml-2">&rarr;</span>
-      </a>
+    <!-- Certifications row -->
+    <div class="mx-auto max-w-7xl px-4 md:px-8 pb-3">
+      <div class="flex items-center gap-4 overflow-x-auto hide-scrollbar py-2">
+        <div class="badge-scale">
+          <div data-iframe-width="150" data-iframe-height="270"
+               data-share-badge-id="92156a9b-9e11-4554-8cdb-a7422e5345ec"
+               data-share-badge-host="https://www.credly.com"></div>
+        </div>
+        <div class="badge-scale">
+          <div data-iframe-width="150" data-iframe-height="270"
+               data-share-badge-id="6b9b58d4-a98d-441b-aafa-e20762f3494a"
+               data-share-badge-host="https://www.credly.com"></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Mobile menu -->
+    <div id="mobileMenu" class="hidden md:hidden px-4 pb-4 md:px-8" role="dialog" aria-modal="true" tabindex="-1">
+      <div class="glass card rounded-xl p-4">
+        <a href="#about" class="block rounded-lg px-2 py-2 text-slate-300 hover:bg-slate-800/70">Skills</a>
+        <a href="#skills-impact" class="block rounded-lg px-2 py-2 text-slate-300 hover:bg-slate-800/70">Impact</a>
+        <a href="#work" class="block rounded-lg px-2 py-2 text-slate-300 hover:bg-slate-800/70">Projects</a>
+        <a href="#experience" class="block rounded-lg px-2 py-2 text-slate-300 hover:bg-slate-800/70">Experience</a>
+        <a href="#contact" class="block rounded-lg px-2 py-2 text-slate-300 hover:bg-slate-800/70">Contact</a>
+      </div>
     </div>
   </header>
 
-  <main>
-    <section id="about" class="py-20 md:py-24 relative overflow-hidden fade-in-section">
-      <div class="container mx-auto px-4 max-w-5xl relative z-10">
-        <h2 class="text-4xl font-bold text-center text-white mb-4">About Me</h2>
-        <div class="section-divider"></div>
-        <div class="glass-effect rounded-2xl p-8 md:p-12 flex flex-col md:flex-row items-center md:space-x-12">
-          <div class="md:w-1/3 mb-8 md:mb-0 transform hover:scale-105 transition duration-300">
-            <img src="https://raw.githubusercontent.com/akashs101199/akashs101199.github.io/main/Images/about_image.png" alt="Akash Shanmuganathan" class="rounded-xl shadow-2xl w-full h-auto object-cover aspect-square border-2 border-slate-700">
-          </div>
-          <div class="md:w-2/3 text-lg leading-relaxed text-slate-300">
-            <p class="mb-4">
-              Hello! I'm Akash Shanmuganathan, a dynamic professional with over 3 years of experience building scalable, data-driven solutions. My expertise lies at the intersection of data engineering and business analysis.
-            </p>
-            <p class="mb-4">
-              My Master's in Engineering Management from Northeastern University has honed my ability to translate complex business requirements into robust data strategies and analytical frameworks.
-            </p>
-            <p>
-              I am passionate about transforming raw data into clear, actionable insights that drive strategic initiatives and create measurable business value.
-            </p>
-          </div>
-        </div>
+  <!-- Hero (Signature strengths on the right) -->
+  <section class="relative mx-auto grid max-w-7xl grid-cols-1 items-start gap-8 px-4 py-16 md:grid-cols-2 md:px-8 lg:py-24">
+    <!-- LEFT: Intro -->
+    <div>
+      <div class="mb-4 inline-flex items-center gap-2 rounded-full border border-emerald-400/30 bg-emerald-400/10 px-3 py-1 text-xs text-emerald-300">
+        <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M12 3v18M3 12h18"/></svg>
+        Data &amp; AI Engineer · AWS Certified (DEA-C01)
       </div>
-    </section>
+      <h1 class="text-4xl font-bold leading-tight sm:text-5xl">
+        I build <span class="grad-text">intelligent agents</span> &amp; governed data platforms
+      </h1>
+      <p class="mt-4 max-w-xl text-slate-200">I combine engineering depth with product thinking to ship reliable, audit-ready systems that cut cost, speed decisions, and pass regulatory reviews.</p>
 
-    <section id="experience" class="py-20 md:py-24 bg-black bg-opacity-20 relative overflow-hidden fade-in-section">
-      <div class="container mx-auto px-4 max-w-7xl relative z-10">
-        <h2 class="text-4xl font-bold text-center text-white mb-4">Experience & Education</h2>
-        <div class="section-divider"></div>
-  
-        <div class="timeline">
-            <!-- Master's Degree -->
-            <div class="timeline-item right">
-              <div class="glass-effect" data-item-id="ms-northeastern">
-                <h4 class="font-bold text-lg text-white">Master of Science, Engineering Management</h4>
-                <p class="text-sm text-slate-400">Northeastern University | Sept 2023 - May 2025</p>
-              </div>
-            </div>
-            <!-- Software Engineer -->
-            <div class="timeline-item left">
-              <div class="glass-effect" data-item-id="hexaware-software-engineer">
-                <h4 class="font-bold text-lg text-white">Software Engineer</h4>
-                <p class="text-sm text-slate-400 mb-3">Hexaware Technologies | Jun 2022 - Jul 2023</p>
-                <button class="view-detail-btn text-sky-400 hover:underline font-medium mt-2">View Details &rarr;</button>
-              </div>
-            </div>
-            <!-- Associate Software Engineer -->
-            <div class="timeline-item right">
-              <div class="glass-effect" data-item-id="hexaware-associate-software-engineer">
-                <h4 class="font-bold text-lg text-white">Associate Software Engineer</h4>
-                <p class="text-sm text-slate-400 mb-3">Hexaware Technologies | Jan 2021 - May 2022</p>
-                <button class="view-detail-btn text-sky-400 hover:underline font-medium mt-2">View Details &rarr;</button>
-              </div>
-            </div>
-            <!-- Bachelor's Degree -->
-            <div class="timeline-item left">
-              <div class="glass-effect" data-item-id="bs-anna">
-                <h4 class="font-bold text-lg text-white">Bachelor's, Electrical & Electronics Engineering</h4>
-                <p class="text-sm text-slate-400">Anna University | Jun 2017 - May 2021</p>
-              </div>
-            </div>
-        </div>
-      </div>
-    </section>
+      <!-- Proof strip -->
+      <ul class="mt-4 space-y-1 text-sm text-slate-200">
+        <li>• Launched <strong>Market Analytics Agent</strong> (Bedrock/LangChain) → <strong>80% reduction</strong> in reporting time (2 days to 4 hours).</li>
+        <li>• Migrated <strong>200+ SQL workloads</strong> to AWS (Glue/Redshift) → <strong>35% faster</strong> runtimes and <strong>~30% lower</strong> infra costs; reporting latency cut to <strong>&lt;1h</strong>.</li>
+        <li>• Instituted schema enforcement and lineage, reducing production defects by <strong>40%</strong> and eliminating recurring audit exceptions.</li>
+      </ul>
 
-    <section id="expertise" class="py-20 md:py-24 relative overflow-hidden fade-in-section">
-      <div class="container mx-auto px-4 max-w-7xl relative z-10">
-        <h2 class="text-4xl font-bold text-center text-white mb-4">My Expertise</h2>
-        <div class="section-divider"></div>
-  
-        <div role="tablist" aria-label="My Professional Expertise" class="flex flex-wrap justify-center gap-3 md:gap-4 mb-12 p-2 glass-effect rounded-full">
-            <button role="tab" aria-selected="true" aria-controls="data-engineer-analyst-panel" class="tab-button active font-semibold py-3 px-6 rounded-full" data-tab="data-engineer-analyst" id="tab-data-engineer-analyst">Data Engineering & Analytics</button>
-            <button role="tab" aria-selected="false" aria-controls="business-analysis-panel" class="tab-button font-semibold py-3 px-6 rounded-full" data-tab="business-analysis" id="tab-business-analysis">Business Analysis</button>
-        </div>
-  
-        <div id="tab-content-container">
-          <div id="data-engineer-analyst-panel" role="tabpanel" aria-labelledby="tab-data-engineer-analyst" class="tab-content active">
-            <div class="glass-effect p-8 rounded-2xl">
-                <h3 class="text-3xl font-bold gradient-text mb-8 text-center">Data Engineering & Analytics</h3>
-                
-                <!-- Professional Experience -->
-                <h4 class="text-2xl font-semibold text-sky-300 mb-6 text-center">Professional Experience</h4>
-                <div class="grid grid-cols-1 md:grid-cols-2 gap-8 mb-12">
-                    <div class="project-card glass-effect p-6 rounded-lg" data-item-id="hexaware-software-engineer">
-                      <h5 class="text-xl font-semibold text-white mb-2">Software Engineer (Data Engineer)</h5>
-                      <p class="text-slate-400 text-sm mb-3">Hexaware Technologies</p>
-                      <p class="text-slate-300">Designed and optimized large-scale ETL pipelines, automated data ingestion, and re-engineered SQL procedures to reduce latency and improve reporting speed.</p>
-                      <button class="view-detail-btn text-sky-400 hover:underline font-medium mt-auto pt-2">View Details &rarr;</button>
-                    </div>
-                    <div class="project-card glass-effect p-6 rounded-lg" data-item-id="hexaware-associate-software-engineer">
-                      <h5 class="text-xl font-semibold text-white mb-2">Associate Software Engineer</h5>
-                      <p class="text-slate-400 text-sm mb-3">Hexaware Technologies</p>
-                      <p class="text-slate-300">Developed ETL jobs, automated data validation for daily feeds, and built Tableau dashboards to provide real-time visibility into QA and business metrics.</p>
-                      <button class="view-detail-btn text-sky-400 hover:underline font-medium mt-auto pt-2">View Details &rarr;</button>
-                    </div>
-                </div>
-
-                <!-- Technical Skillset -->
-                <h4 class="text-2xl font-semibold text-sky-300 mb-6 text-center">Technical Skillset</h4>
-                <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-4 mb-12 text-center">
-                    <div class="skill-card glass-effect p-4 rounded-lg">
-                        <h5 class="font-bold text-white">Languages</h5>
-                        <p class="text-slate-400 text-sm">Python, SQL, Java</p>
-                    </div>
-                    <div class="skill-card glass-effect p-4 rounded-lg">
-                        <h5 class="font-bold text-white">Big Data & Cloud</h5>
-                        <p class="text-slate-400 text-sm">Spark, Kafka, AWS (S3, Glue, Lambda, Athena, Redshift)</p>
-                    </div>
-                    <div class="skill-card glass-effect p-4 rounded-lg">
-                        <h5 class="font-bold text-white">Orchestration & ELT</h5>
-                        <p class="text-slate-400 text-sm">dbt, Airflow</p>
-                    </div>
-                    <div class="skill-card glass-effect p-4 rounded-lg">
-                        <h5 class="font-bold text-white">Databases</h5>
-                        <p class="text-slate-400 text-sm">PostgreSQL, MySQL, T-SQL</p>
-                    </div>
-                    <div class="skill-card glass-effect p-4 rounded-lg">
-                        <h5 class="font-bold text-white">Tools</h5>
-                        <p class="text-slate-400 text-sm">Docker, Git, GitHub Actions, Tableau, Streamlit</p>
-                    </div>
-                </div>
-
-                <!-- Projects -->
-                <h4 class="text-2xl font-semibold text-sky-300 mb-6 text-center">Projects</h4>
-                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-                    <div class="project-card glass-effect p-6 rounded-lg flex flex-col" data-item-id="credit-risk-dashboard">
-                        <h5 class="text-xl font-semibold text-white mb-2">AI-Driven Credit Risk Dashboard</h5>
-                        <p class="text-slate-400 text-sm mb-3">End-to-end platform for dynamic credit risk analytics and fraud detection using ML and interactive visualizations.</p>
-                        <button class="view-detail-btn text-sky-400 hover:underline font-medium mt-auto pt-2">View Details &rarr;</button>
-                    </div>
-                    <div class="project-card glass-effect p-6 rounded-lg flex flex-col" data-item-id="data-validation-engine">
-                        <h5 class="text-xl font-semibold text-white mb-2">Data Validation Engine</h5>
-                        <p class="text-slate-400 text-sm mb-3">A modular system for validating ML datasets, supporting schema checks, business rules, and data drift detection.</p>
-                        <button class="view-detail-btn text-sky-400 hover:underline font-medium mt-auto pt-2">View Details &rarr;</button>
-                    </div>
-                    <div class="project-card glass-effect p-6 rounded-lg flex flex-col" data-item-id="nyc-taxi-analytics">
-                        <h5 class="text-xl font-semibold text-white mb-2">NYC Taxi Analytics with dbt</h5>
-                        <p class="text-slate-400 text-sm mb-3">An end-to-end analytics pipeline using dbt and DuckDB on the NYC Yellow Taxi dataset, runnable entirely locally.</p>
-                        <button class="view-detail-btn text-sky-400 hover:underline font-medium mt-auto pt-2">View Details &rarr;</button>
-                    </div>
-                    <div class="project-card glass-effect p-6 rounded-lg flex flex-col" data-item-id="streaming-data-pipeline">
-                        <h5 class="text-xl font-semibold text-white mb-2">Real-Time Streaming Pipeline</h5>
-                        <p class="text-slate-400 text-sm mb-3">A real-time pipeline using Kafka, Spark Streaming, and Airflow to process and visualize live event data at scale.</p>
-                        <button class="view-detail-btn text-sky-400 hover:underline font-medium mt-auto pt-2">View Details &rarr;</button>
-                    </div>
-                    <div class="project-card glass-effect p-6 rounded-lg flex flex-col" data-item-id="finsight-finance-app">
-                        <h5 class="text-xl font-semibold text-white mb-2">FinSight Personal Finance App</h5>
-                        <p class="text-slate-400 text-sm mb-3">A full-stack app for analyzing financial transactions with a React frontend, Flask backend, and GPT-powered advice.</p>
-                        <button class="view-detail-btn text-sky-400 hover:underline font-medium mt-auto pt-2">View Details &rarr;</button>
-                    </div>
-                </div>
-            </div>
-          </div>
-  
-          <div id="business-analysis-panel" role="tabpanel" aria-labelledby="tab-business-analysis" class="tab-content">
-            <div class="glass-effect p-8 rounded-2xl">
-                <h3 class="text-3xl font-bold gradient-text mb-6">Business Analysis</h3>
-                <p class="text-slate-300 text-lg mb-8">
-                  As a Business Analyst, I leverage my Engineering Management background to bridge technical solutions with core business needs. I excel at understanding complex problems, identifying stakeholder requirements, and translating them into clear, actionable plans.
-                </p>
-      
-                <h4 class="text-2xl font-semibold text-sky-300 mb-4">Key Skills</h4>
-                <ul class="list-disc list-inside text-slate-300 mb-8 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-2">
-                  <li>Requirements Gathering & Documentation</li>
-                  <li>Process Modeling (BPMN, Flowcharts)</li>
-                  <li>Stakeholder Management</li>
-                  <li>Data Modeling & Analysis</li>
-                  <li>UML Diagramming</li>
-                  <li>Agile & Scrum Methodologies</li>
-                  <li>Market & Competitive Analysis</li>
-                  <li>Go-to-Market Strategy</li>
-                </ul>
-      
-                <h4 class="text-2xl font-semibold text-sky-300 mb-4">Relevant Projects</h4>
-                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mb-8">
-                  <div class="project-card glass-effect p-6 rounded-lg flex flex-col" data-item-id="mypal-case-study">
-                    <h5 class="text-xl font-semibold text-white mb-2">MyPal - AI Learning Platform</h5>
-                    <p class="text-slate-400 text-sm mb-3">Enterprise case study for an AI-driven adaptive learning platform to personalize education.</p>
-                    <button class="view-detail-btn text-sky-400 hover:underline font-medium mt-auto pt-2">View Case Study &rarr;</button>
-                  </div>
-                  <div class="project-card glass-effect p-6 rounded-lg flex flex-col" data-item-id="localconnect-case-study">
-                    <h5 class="text-xl font-semibold text-white mb-2">LocalConnect - Digital Commerce Bridge</h5>
-                    <p class="text-slate-400 text-sm mb-3">Case study for a platform designed to empower local businesses against e-commerce giants.</p>
-                    <button class="view-detail-btn text-sky-400 hover:underline font-medium mt-auto pt-2">View Case Study &rarr;</button>
-                  </div>
-                  <div class="project-card glass-effect p-6 rounded-lg flex flex-col" data-item-id="t9spm5-case-study">
-                    <h5 class="text-xl font-semibold text-white mb-2">Change Management - Research</h5>
-                    <p class="text-slate-400 text-sm mb-3">A case study on an enterprise project for product management and business analytics.</p>
-                    <button class="view-detail-btn text-sky-400 hover:underline font-medium mt-auto pt-2">View Case Study &rarr;</button>
-                  </div>
-                </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <section id="philosophy" class="py-20 md:py-24 relative overflow-hidden fade-in-section">
-      <div class="container mx-auto px-4 max-w-4xl relative z-10 text-center">
-        <h2 class="text-4xl font-bold text-white mb-4">My Philosophy</h2>
-        <div class="section-divider"></div>
-        <div class="glass-effect p-8 md:p-12 rounded-2xl">
-          <p class="text-lg leading-relaxed text-slate-300 mb-6">
-            I believe in building solutions that are not just technically sound, but also strategically aligned with business goals and deeply user-centric. My approach combines rigorous analytical thinking with agile execution, ensuring that every project delivers tangible value.
-          </p>
-          <p class="text-lg leading-relaxed text-slate-300">
-            My passion lies in leveraging data to create systems that solve real-world problems and drive meaningful impact.
-          </p>
-        </div>
-      </div>
-    </section>
-  </main>
-
-  <footer id="contact" class="py-16 bg-black bg-opacity-40">
-    <div class="container mx-auto px-6 text-center">
-      <h2 class="text-3xl font-bold text-white">Get In Touch</h2>
-      <p class="mt-4 text-slate-400 max-w-xl mx-auto">I'm always open to new opportunities, collaborations, and interesting conversations. Feel free to reach out!</p>
-      <div class="mt-8 flex justify-center space-x-6">
-        <a href="mailto:akashs101199@gmail.com" class="social-icon-link text-slate-400" aria-label="Email">
-          <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8" viewBox="0 0 20 20" fill="currentColor"><path d="M2.003 5.884L10 9.882l7.997-3.998A2 2 0 0016 4H4a2 2 0 00-1.997 1.884z" /><path d="M18 8.118l-8 4-8-4V14a2 2 0 002 2h12a2 2 0 002-2V8.118z" /></svg>
+      <div class="mt-6 flex flex-wrap gap-3">
+        <a href="#contact" class="inline-flex items-center gap-2 rounded-md bg-emerald-500 px-4 py-2 text-slate-900 hover:bg-emerald-400 shadow-glow">
+          <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+          Start a project
         </a>
-        <a href="https://www.linkedin.com/in/akash-shanmuganathan/" target="_blank" rel="noopener noreferrer" class="social-icon-link text-slate-400" aria-label="LinkedIn">
-          <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8" viewBox="0 0 24 24" fill="currentColor"><path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"/></svg>
+        <a href="/Akash_Shanmuganathan_Resume.pdf" class="inline-flex items-center gap-2 rounded-md border border-emerald-400/40 px-4 py-2 text-emerald-300 hover:bg-emerald-400/10">
+          <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16v2a2 2 0 002 2h12a2 2 0 002-2v-2M7 10l5 5m0 0l5-5m-5 5V4"/></svg>
+          Download Resume
         </a>
-        <a href="https://github.com/akashs101199" target="_blank" rel="noopener noreferrer" class="social-icon-link text-slate-400" aria-label="GitHub">
-          <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/></svg>
+        <a href="https://github.com/akashs101199" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-2 rounded-md px-3 py-2 text-slate-300 hover:text-white">
+          <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" viewBox="0 0 24 24" fill="currentColor"><path d="M12 .5a12 12 0 00-3.79 23.4c.6.1.82-.27.82-.6v-2.1c-3.34.73-4.04-1.6-4.04-1.6-.55-1.4-1.34-1.77-1.34-1.77-1.1-.74.08-.73.08-.73 1.22.09 1.86 1.26 1.86 1.26 1.08 1.85 2.82 1.32 3.51 1 .11-.78.42-1.32.76-1.63-2.66-.31-5.46-1.33-5.46-5.9 0-1.3.47-2.36 1.24-3.2-.13-.31-.54-1.56.12-3.26 0 0 1.01-.32 3.3 1.22a11.5 11.5 0 016 0c2.3-1.54 3.3-1.22 3.3-1.22.66 1.7.25 2.95.12 3.26.77.84 1.23 1.9 1.23 3.2 0 4.6-2.8 5.58-5.48 5.88.43.37.81 1.1.81 2.22v3.29c0 .33.22.7.82.6A12 12 0 0012 .5z"/></svg>
+          GitHub
+        </a>
+        <a href="https://www.linkedin.com/in/akash101199/" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-2 rounded-md px-3 py-2 text-slate-300 hover:text-white">
+          <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" viewBox="0 0 24 24" fill="currentColor"><path d="M4.98 3.5C4.98 4.88 3.86 6 2.5 6A2.5 2.5 0 112.48 1 2.5 2.5 0 014.98 3.5zM.5 8.5h4V24h-4V8.5zM8.5 8.5h3.8v2.1h.05c.53-1 1.84-2.1 3.78-2.1 4.04 0 4.79 2.66 4.79 6.12V24h-4v-6.9c0-1.64-.03-3.74-2.28-3.74-2.28 0-2.62 1.78-2.62 3.62V24h-4V8.5z"/></svg>
+          LinkedIn
         </a>
       </div>
-      <p class="mt-10 text-sm text-slate-500">&copy; 2025 Akash Shanmuganathan. All Rights Reserved.</p>
+
+      <!-- Quick metrics -->
+      <div class="mt-8 grid grid-cols-2 gap-3 sm:grid-cols-4">
+        <div class="metric flex items-center gap-3 rounded-xl bg-slate-900/50 p-3">
+          <div class="rounded-lg bg-emerald-400/15 p-2 text-emerald-300">📚</div>
+          <div><div class="text-lg font-semibold">200+</div><div class="text-xs text-slate-400">Workloads migrated</div></div>
+        </div>
+        <div class="metric flex items-center gap-3 rounded-xl bg-slate-900/50 p-3">
+          <div class="rounded-lg bg-emerald-400/15 p-2 text-emerald-300">💾</div>
+          <div><div class="text-lg font-semibold">10M+</div><div class="text-xs text-slate-400">Streaming volume/day</div></div>
+        </div>
+        <div class="metric flex items-center gap-3 rounded-xl bg-slate-900/50 p-3">
+          <div class="rounded-lg bg-emerald-400/15 p-2 text-emerald-300">⚡</div>
+          <div><div class="text-lg font-semibold">80%</div><div class="text-xs text-slate-400">Time cut (AI reports)</div></div>
+        </div>
+        <div class="metric flex items-center gap-3 rounded-xl bg-slate-900/50 p-3">
+          <div class="rounded-lg bg-emerald-400/15 p-2 text-emerald-300">🛡️</div>
+          <div><div class="text-lg font-semibold">40%</div><div class="text-xs text-slate-400">Fewer prod defects</div></div>
+        </div>
+      </div>
     </div>
+
+    <!-- RIGHT: Signature strengths -->
+    <aside class="relative md:sticky md:top-24 self-start">
+      <div class="card glass rounded-xl">
+        <div class="border-b border-slate-800/60 px-6 py-4 text-slate-100 font-semibold">Signature strengths</div>
+        <div class="space-y-3 p-6 text-slate-300">
+          <div class="flex items-start gap-2"><span class="text-emerald-300">✔</span><p><strong>GenAI Agents:</strong> Built Market Analytics Agent (Bedrock/LangChain) cutting reporting time by 80%.</p></div>
+          <div class="flex items-start gap-2"><span class="text-emerald-300">✔</span><p><strong>Cloud Modernization:</strong> Led LSEG migration of 200+ SQL workloads to AWS (Glue/Redshift).</p></div>
+          <div class="flex items-start gap-2"><span class="text-emerald-300">✔</span><p><strong>Data Governance:</strong> Instituted schema validation and lineage, cutting production defects by 40%.</p></div>
+        </div>
+      </div>
+    </aside>
+  </section>
+
+  <!-- Skills -->
+  <section id="about" class="mx-auto max-w-7xl px-4 py-8 md:px-8">
+    <div class="mb-6 flex items-center gap-2 text-sm text-emerald-300">
+      <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M6 12h12M6 12l-3 3m3-3l-3-3M18 12l3 3m-3-3l3-3"/></svg>
+      Core stack
+    </div>
+    <div class="flex flex-wrap gap-2">
+      <span class="ring-emerald rounded-full bg-slate-900/40 px-3 py-1 text-xs text-slate-200">AWS Glue</span>
+      <span class="ring-emerald rounded-full bg-slate-900/40 px-3 py-1 text-xs text-slate-200">Redshift</span>
+      <span class="ring-emerald rounded-full bg-slate-900/40 px-3 py-1 text-xs text-slate-200">S3 / Athena</span>
+      <span class="ring-emerald rounded-full bg-slate-900/40 px-3 py-1 text-xs text-slate-200">Lambda</span>
+      <span class="ring-emerald rounded-full bg-slate-900/40 px-3 py-1 text-xs text-slate-200">Bedrock / GenAI</span>
+      <span class="ring-emerald rounded-full bg-slate-900/40 px-3 py-1 text-xs text-slate-200">LangChain</span>
+      <span class="ring-emerald rounded-full bg-slate-900/40 px-3 py-1 text-xs text-slate-200">Python (Pandas, PySpark)</span>
+      <span class="ring-emerald rounded-full bg-slate-900/40 px-3 py-1 text-xs text-slate-200">SQL</span>
+      <span class="ring-emerald rounded-full bg-slate-900/40 px-3 py-1 text-xs text-slate-200">Spark Streaming</span>
+      <span class="ring-emerald rounded-full bg-slate-900/40 px-3 py-1 text-xs text-slate-200">Kafka</span>
+      <span class="ring-emerald rounded-full bg-slate-900/40 px-3 py-1 text-xs text-slate-200">Airflow</span>
+      <span class="ring-emerald rounded-full bg-slate-900/40 px-3 py-1 text-xs text-slate-200">dbt</span>
+      <span class="ring-emerald rounded-full bg-slate-900/40 px-3 py-1 text-xs text-slate-200">Great Expectations</span>
+      <span class="ring-emerald rounded-full bg-slate-900/40 px-3 py-1 text-xs text-slate-200">LLMOps / MLOps</span>
+      <span class="ring-emerald rounded-full bg-slate-900/40 px-3 py-1 text-xs text-slate-200">Docker</span>
+      <span class="ring-emerald rounded-full bg-slate-900/40 px-3 py-1 text-xs text-slate-200">Tableau / Quick Suite</span>
+      <span class="ring-emerald rounded-full bg-slate-900/40 px-3 py-1 text-xs text-slate-200">OAuth 2.0</span>
+    </div>
+  </section>
+
+  <!-- Skills → Impact Map -->
+  <section id="skills-impact" class="mx-auto max-w-7xl px-4 py-12 md:px-8">
+    <div class="mb-2 flex items-center gap-2 text-sm text-emerald-300">
+      <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M6 12h12M6 12l-3 3m3-3l-3-3M18 12l3 3m-3-3l3-3"/></svg>
+      Skills → Impact map
+    </div>
+    <p class="mb-4 max-w-2xl text-slate-300 text-sm">
+      How the tools I use translate into measurable outcomes (latency ↓, cost ↓, audit readiness ↑, and happier stakeholders).
+    </p>
+
+    <div class="glass card rounded-xl overflow-hidden">
+      <div class="overflow-x-auto">
+        <table class="min-w-full text-left text-sm">
+          <thead class="bg-slate-900/60 text-slate-300">
+            <tr>
+              <th scope="col" class="px-4 py-3 font-semibold">Tool / Area</th>
+              <th scope="col" class="px-4 py-3 font-semibold">Used for</th>
+              <th scope="col" class="px-4 py-3 font-semibold">Impact</th>
+              <th scope="col" class="px-4 py-3 font-semibold">Where</th>
+            </tr>
+          </thead>
+          <tbody class="divide-y divide-slate-800/60">
+            <tr class="hover:bg-slate-900/40">
+              <td class="px-4 py-3 text-slate-200">AWS Glue</td>
+              <td class="px-4 py-3 text-slate-300">Serverless ETL, schema harmonization, batch/stream ingestion</td>
+              <td class="px-4 py-3 text-slate-300">Runtime ↓ 35%, infra cost ↓ ~30%</td>
+              <td class="px-4 py-3 text-slate-400">FinTech Platform Migration</td>
+            </tr>
+            <tr class="hover:bg-slate-900/40">
+              <td class="px-4 py-3 text-slate-200">Amazon Redshift</td>
+              <td class="px-4 py-3 text-slate-300">Analytical store for spend/ROAS/conversions, BI serving</td>
+              <td class="px-4 py-3 text-slate-300">Reporting latency ↓ 24h → &lt;1h</td>
+              <td class="px-4 py-3 text-slate-400">FinTech Platform Migration</td>
+            </tr>
+            <tr class="hover:bg-slate-900/40">
+              <td class="px-4 py-3 text-slate-200">AWS Bedrock</td>
+              <td class="px-4 py-3 text-slate-300">LLM workflows for NL insights, summaries, recommendations</td>
+              <td class="px-4 py-3 text-slate-300">Reporting time ↓ 80% (2 days → 4 hours)</td>
+              <td class="px-4 py-3 text-slate-400">Market Analytics Agent</td>
+            </tr>
+            <tr class="hover:bg-slate-900/40">
+              <td class="px-4 py-3 text-slate-200">LangChain</td>
+              <td class="px-4 py-3 text-slate-300">Tooling, retrievers, structured output for agents</td>
+              <td class="px-4 py-3 text-slate-300">Consistent, auditable answers; fewer manual steps</td>
+              <td class="px-4 py-3 text-slate-400">Market Analytics Agent</td>
+            </tr>
+            <tr class="hover:bg-slate-900/40">
+              <td class="px-4 py-3 text-slate-200">Kafka + Spark Streaming</td>
+              <td class="px-4 py-3 text-slate-300">Real-time event processing and KPI pipelines</td>
+              <td class="px-4 py-3 text-slate-300">10M+ records/day; sub-15s dashboards</td>
+              <td class="px-4 py-3 text-slate-400">Real-Time Rides Analytics</td>
+            </tr>
+            <tr class="hover:bg-slate-900/40">
+              <td class="px-4 py-3 text-slate-200">Airflow / dbt</td>
+              <td class="px-4 py-3 text-slate-300">Orchestration and ELT modeling</td>
+              <td class="px-4 py-3 text-slate-300">Fewer failures; faster iteration on metrics</td>
+              <td class="px-4 py-3 text-slate-400">Multiple projects</td>
+            </tr>
+            <tr class="hover:bg-slate-900/40">
+              <td class="px-4 py-3 text-slate-200">Great Expectations</td>
+              <td class="px-4 py-3 text-slate-300">Data quality gates, schema enforcement</td>
+              <td class="px-4 py-3 text-slate-300">Prod defects ↓ 40%; audit exceptions eliminated</td>
+              <td class="px-4 py-3 text-slate-400">FinTech Platform Migration</td>
+            </tr>
+            <tr class="hover:bg-slate-900/40">
+              <td class="px-4 py-3 text-slate-200">OAuth 2.0</td>
+              <td class="px-4 py-3 text-slate-300">Secure Google/Microsoft integrations for agents</td>
+              <td class="px-4 py-3 text-slate-300">Policy-compliant automation &gt;90%; reschedules ↓ 60%</td>
+              <td class="px-4 py-3 text-slate-400">AI Scheduling Agent</td>
+            </tr>
+            <tr class="hover:bg-slate-900/40">
+              <td class="px-4 py-3 text-slate-200">QuickSight / Tableau</td>
+              <td class="px-4 py-3 text-slate-300">Decision dashboards, evals, KPI reviews</td>
+              <td class="px-4 py-3 text-slate-300">Manual effort ↓ ~85%; clearer KPI ownership</td>
+              <td class="px-4 py-3 text-slate-400">FinTech + AI projects</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <p class="mt-3 text-xs text-slate-500">
+      Metrics are based on project outcomes and internal benchmarks; details available in project case studies on request.
+    </p>
+  </section>
+
+  <!-- Resume CTA -->
+  <section class="mx-auto max-w-7xl px-4 md:px-8">
+    <div class="glass card rounded-xl p-4 flex flex-wrap items-center justify-between gap-3">
+      <p class="text-slate-200">Prefer the one-pager? Download my resume.</p>
+      <a href="/Akash_Shanmuganathan_Resume.pdf" class="inline-flex items-center gap-2 rounded-md border border-emerald-400/40 px-4 py-2 text-emerald-300 hover:bg-emerald-400/10">
+        <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16v2a2 2 0 002 2h12a2 2 0 002-2v-2M7 10l5 5m0 0l5-5m-5 5V4"/></svg>
+        Download Resume (PDF)
+      </a>
+    </div>
+  </section>
+
+  <!-- Work / Projects -->
+  <section id="work" class="relative mx-auto max-w-7xl px-4 py-16 md:px-8">
+    <h2 class="mb-8 text-2xl font-semibold">Featured Projects</h2>
+
+    <h3 class="mb-4 text-xl font-medium text-emerald-300/80">Professional (High-Impact &amp; Client-Facing)</h3>
+    <div class="grid gap-6 md:grid-cols-3 mb-10">
+      <!-- Project 1 -->
+      <article class="card glass group rounded-xl p-6 transition hover:-translate-y-0.5 hover:border-emerald-400/50 hover:bg-slate-900/70">
+        <div class="mb-3 flex items-center justify-between text-slate-100 font-semibold">
+          Market Analytics Agent
+          <span class="rounded-full bg-violet-400/20 px-2 py-0.5 text-xs text-violet-300">AI Product</span>
+        </div>
+        <p class="text-slate-300">GenAI agent to analyze Google/Meta Ads and automate performance insights for marketing teams.</p>
+        <ul class="mt-3 space-y-1 text-sm">
+          <li class="flex items-start gap-2"><span class="text-emerald-300">▸</span> 80% reduction in reporting time (2 days to 4 hours) via chat + BI workflows.</li>
+          <li class="flex items-start gap-2"><span class="text-emerald-300">▸</span> Integrated Quick Suite for natural-language BI and weekly summaries.</li>
+          <li class="flex items-start gap-2"><span class="text-emerald-300">▸</span> Automated alerts and budget recommendations (±10%).</li>
+        </ul>
+        <div class="mt-3 flex flex-wrap gap-2 text-xs text-slate-200">
+          <span class="ring-emerald rounded-full bg-slate-900/40 px-3 py-1">AWS Bedrock</span>
+          <span class="ring-emerald rounded-full bg-slate-900/40 px-3 py-1">LangChain</span>
+          <span class="ring-emerald rounded-full bg-slate-900/40 px-3 py-1">S3/Glue/Athena</span>
+          <span class="ring-emerald rounded-full bg-slate-900/40 px-3 py-1">OAuth 2.0</span>
+        </div>
+      </article>
+
+      <!-- Project 2 -->
+      <article class="card glass group rounded-xl p-6 transition hover:-translate-y-0.5 hover:border-emerald-400/50 hover:bg-slate-900/70">
+        <div class="mb-3 flex items-center justify-between text-slate-100 font-semibold">
+          FinTech Platform Migration
+          <span class="rounded-full bg-blue-400/20 px-2 py-0.5 text-xs text-blue-300">Data Infra</span>
+        </div>
+        <p class="text-slate-300">Modernized 200+ legacy SQL workloads to AWS for the London Stock Exchange Group.</p>
+        <ul class="mt-3 space-y-1 text-sm">
+          <li class="flex items-start gap-2"><span class="text-emerald-300">▸</span> 35% faster runtimes and ~30% infrastructure cost reduction.</li>
+          <li class="flex items-start gap-2"><span class="text-emerald-300">▸</span> Reduced reporting latency from 24h to under 1h; improved audit readiness (SOX, MiFID II).</li>
+          <li class="flex items-start gap-2"><span class="text-emerald-300">▸</span> Embedded testing and lineage; 40% fewer production defects.</li>
+        </ul>
+        <div class="mt-3 flex flex-wrap gap-2 text-xs text-slate-200">
+          <span class="ring-emerald rounded-full bg-slate-900/40 px-3 py-1">AWS Glue</span>
+          <span class="ring-emerald rounded-full bg-slate-900/40 px-3 py-1">Redshift</span>
+          <span class="ring-emerald rounded-full bg-slate-900/40 px-3 py-1">Spark</span>
+          <span class="ring-emerald rounded-full bg-slate-900/40 px-3 py-1">Tableau</span>
+        </div>
+      </article>
+
+      <!-- Project 3 -->
+      <article class="card glass group rounded-xl p-6 transition hover:-translate-y-0.5 hover:border-emerald-400/50 hover:bg-slate-900/70">
+        <div class="mb-3 flex items-center justify-between text-slate-100 font-semibold">
+          AI Scheduling Agent
+          <span class="rounded-full bg-violet-400/20 px-2 py-0.5 text-xs text-violet-300">AI Product</span>
+        </div>
+        <p class="text-slate-300">Enterprise-ready agent automating calendar management across Google and Microsoft 365.</p>
+        <ul class="mt-3 space-y-1 text-sm">
+          <li class="flex items-start gap-2"><span class="text-emerald-300">▸</span> &gt;90% policy-compliant success across 100+ test cases; 60% fewer reschedules.</li>
+          <li class="flex items-start gap-2"><span class="text-emerald-300">▸</span> Secure OAuth 2.0 and encrypted storage for multi-tenant deployments.</li>
+          <li class="flex items-start gap-2"><span class="text-emerald-300">▸</span> Evaluation dashboards in QuickSight for transparent KPI tracking.</li>
+        </ul>
+        <div class="mt-3 flex flex-wrap gap-2 text-xs text-slate-200">
+          <span class="ring-emerald rounded-full bg-slate-900/40 px-3 py-1">FastAPI</span>
+          <span class="ring-emerald rounded-full bg-slate-900/40 px-3 py-1">Bedrock / Llama 3</span>
+          <span class="ring-emerald rounded-full bg-slate-900/40 px-3 py-1">OAuth 2.0</span>
+          <span class="ring-emerald rounded-full bg-slate-900/40 px-3 py-1">Python</span>
+        </div>
+      </article>
+    </div>
+
+    <h3 class="mb-4 text-xl font-medium text-emerald-300/80">Independent (Personal &amp; Portfolio)</h3>
+    <div class="grid gap-6 md:grid-cols-3">
+      <!-- Project 4 -->
+      <article class="card glass group rounded-xl p-6 transition hover:-translate-y-0.5 hover:border-emerald-400/50 hover:bg-slate-900/70">
+        <div class="mb-3 flex items-center justify-between text-slate-100 font-semibold">
+          Real-Time Rides Analytics
+          <span class="rounded-full bg-yellow-400/20 px-2 py-0.5 text-xs text-yellow-300">Data Stream</span>
+        </div>
+        <p class="text-slate-300">Streaming platform processing live ride events with sub-15-second latency for KPI dashboards.</p>
+        <ul class="mt-3 space-y-1 text-sm">
+          <li class="flex items-start gap-2"><span class="text-emerald-300">▸</span> Kafka → Spark → PostgreSQL architecture.</li>
+          <li class="flex items-start gap-2"><span class="text-emerald-300">▸</span> Delivered real-time KPIs (ETAs, fares, anomaly bands).</li>
+          <li class="flex items-start gap-2"><span class="text-emerald-300">▸</span> Observability via Prometheus &amp; Grafana.</li>
+        </ul>
+        <div class="mt-3 flex flex-wrap gap-2 text-xs text-slate-200">
+          <span class="ring-emerald rounded-full bg-slate-900/40 px-3 py-1">Kafka</span>
+          <span class="ring-emerald rounded-full bg-slate-900/40 px-3 py-1">Spark Streaming</span>
+          <span class="ring-emerald rounded-full bg-slate-900/40 px-3 py-1">Airflow</span>
+          <span class="ring-emerald rounded-full bg-slate-900/40 px-3 py-1">PostgreSQL</span>
+        </div>
+        <div class="pt-3">
+          <a href="https://github.com/akashs101199/real-time-analytics" target="_blank" class="inline-flex items-center gap-1 text-sm text-emerald-300 hover:underline">GitHub Repo
+            <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M7 17L17 7M7 7h10v10"/></svg>
+          </a>
+        </div>
+      </article>
+
+      <!-- Project 5 -->
+      <article class="card glass group rounded-xl p-6 transition hover:-translate-y-0.5 hover:border-emerald-400/50 hover:bg-slate-900/70">
+        <div class="mb-3 flex items-center justify-between text-slate-100 font-semibold">
+          Credit Risk Scoring API
+          <span class="rounded-full bg-red-400/20 px-2 py-0.5 text-xs text-red-300">MLOps</span>
+        </div>
+        <p class="text-slate-300">Real-time credit risk scoring API with explainable ML outputs (XAI).</p>
+        <ul class="mt-3 space-y-1 text-sm">
+          <li class="flex items-start gap-2"><span class="text-emerald-300">▸</span> FastAPI for low-latency inference.</li>
+          <li class="flex items-start gap-2"><span class="text-emerald-300">▸</span> SHAP for model explainability and regulatory alignment.</li>
+          <li class="flex items-start gap-2"><span class="text-emerald-300">▸</span> Feature pipelines for automated retraining.</li>
+        </ul>
+        <div class="mt-3 flex flex-wrap gap-2 text-xs text-slate-200">
+          <span class="ring-emerald rounded-full bg-slate-900/40 px-3 py-1">FastAPI</span>
+          <span class="ring-emerald rounded-full bg-slate-900/40 px-3 py-1">LightGBM</span>
+          <span class="ring-emerald rounded-full bg-slate-900/40 px-3 py-1">SHAP (XAI)</span>
+          <span class="ring-emerald rounded-full bg-slate-900/40 px-3 py-1">Docker</span>
+        </div>
+        <div class="pt-3">
+          <a href="https://github.com/akashs101199/credit-risk-scoring" target="_blank" class="inline-flex items-center gap-1 text-sm text-emerald-300 hover:underline">GitHub Repo
+            <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M7 17L17 7M7 7h10v10"/></svg>
+          </a>
+        </div>
+      </article>
+
+      <!-- Project 6 -->
+      <article class="card glass group rounded-xl p-6 transition hover:-translate-y-0.5 hover:border-emerald-400/50 hover:bg-slate-900/70">
+        <div class="mb-3 flex items-center justify-between text-slate-100 font-semibold">
+          Data Validation Engine
+          <span class="rounded-full bg-green-400/20 px-2 py-0.5 text-xs text-green-300">Data Quality</span>
+        </div>
+        <p class="text-slate-300">A modular framework for continuous schema checks, data drift, and anomaly detection.</p>
+        <ul class="mt-3 space-y-1 text-sm">
+          <li class="flex items-start gap-2"><span class="text-emerald-300">▸</span> Quality gates for ML pipeline inputs.</li>
+          <li class="flex items-start gap-2"><span class="text-emerald-300">▸</span> Interactive Streamlit dashboards for monitoring.</li>
+          <li class="flex items-start gap-2"><span class="text-emerald-300">▸</span> Automated alerts and comprehensive reports.</li>
+        </ul>
+        <div class="mt-3 flex flex-wrap gap-2 text-xs text-slate-200">
+          <span class="ring-emerald rounded-full bg-slate-900/40 px-3 py-1">Python</span>
+          <span class="ring-emerald rounded-full bg-slate-900/40 px-3 py-1">Pandera</span>
+          <span class="ring-emerald rounded-full bg-slate-900/40 px-3 py-1">Streamlit</span>
+          <span class="ring-emerald rounded-full bg-slate-900/40 px-3 py-1">Data Drift</span>
+        </div>
+        <div class="pt-3">
+          <a href="https://github.com/akashs101199/data-validation-engine" target="_blank" class="inline-flex items-center gap-1 text-sm text-emerald-300 hover:underline">GitHub Repo
+            <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M7 17L17 7M7 7h10v10"/></svg>
+          </a>
+        </div>
+      </article>
+    </div>
+  </section>
+
+  <!-- Experience (clean two-column layout) -->
+  <section id="experience" class="relative mx-auto max-w-7xl px-4 pb-8 md:px-8 lg:pb-16">
+    <h2 class="mb-6 text-2xl font-semibold">Experience</h2>
+
+    <div class="relative grid gap-10 md:grid-cols-2 md:gap-12">
+      <div class="pointer-events-none absolute inset-y-0 left-1/2 hidden w-px -translate-x-1/2 bg-slate-800 md:block"></div>
+
+      <!-- Column A -->
+      <div class="exp-col relative">
+        <!-- Data & AI Engineer -->
+        <div class="relative rounded-xl border border-slate-800/60 bg-slate-900/40 p-5 md:bg-transparent md:border-0 md:p-0">
+          <div class="text-sm text-emerald-300">09/2025 – Present</div>
+          <div class="mt-1 text-lg font-semibold">Data &amp; AI Engineer</div>
+          <div class="text-slate-400">Onedata Software Solutions · Fort Mill, SC, US</div>
+          <ul class="mt-3 text-slate-300">
+            <li>Launched Market Analytics Agent (AWS Bedrock, Ads APIs, Quick Suite) cutting reporting time by 80%.</li>
+            <li>Built serverless ETL (S3, Glue, Lambda) into Athena/Redshift for unified spend/ROAS/conversion metrics.</li>
+            <li>Automated weekly summaries, alerts, and ±10% budget recommendations using Bedrock workflows.</li>
+            <li>Delivered an AI Scheduling Agent (FastAPI, Llama 3/Mistral, OAuth 2.0) with &gt;90% policy compliance across 100+ tests; 60% fewer reschedules.</li>
+            <li>Hardened multi-tenant security and standardized KPI dashboards in QuickSight.</li>
+          </ul>
+        </div>
+
+        <!-- Data Engineer -->
+        <div class="relative mt-10 rounded-xl border border-slate-800/60 bg-slate-900/40 p-5 md:bg-transparent md:border-0 md:p-0">
+          <div class="text-sm text-emerald-300">01/2021 – 07/2023</div>
+          <div class="mt-1 text-lg font-semibold">Data Engineer</div>
+          <div class="text-slate-400">Hexaware Technologies (FinTech client) · Chennai, India</div>
+          <ul class="mt-3 text-slate-300">
+            <li>Migrated 200+ SQL workloads to AWS Glue/Redshift, reducing infra costs ~30% and query runtimes 35%.</li>
+            <li>Architected event-driven pipelines (Spark, Kafka, Lambda) processing 10M+ records/day for trading/compliance analytics.</li>
+            <li>Added testing and schema validation (Great Expectations) → ~40% fewer production defects; improved SOX/MiFID II readiness.</li>
+            <li>Cut reporting latency from 24h to &lt;1h; delivered QA/compliance dashboards in Tableau (≈85% less manual effort).</li>
+          </ul>
+        </div>
+      </div>
+
+      <!-- Column B -->
+      <div class="exp-col relative">
+        <!-- Prompt Engineer -->
+        <div class="relative rounded-xl border border-slate-800/60 bg-slate-900/40 p-5 md:bg-transparent md:border-0 md:p-0">
+          <div class="text-sm text-emerald-300">10/2025 – Present</div>
+          <div class="mt-1 text-lg font-semibold">Prompt Engineer</div>
+          <div class="text-slate-400">Handshake · Remote, US</div>
+          <ul class="mt-3 text-slate-300">
+            <li>Designed and optimized domain-specific prompts to improve LLM accuracy and relevance.</li>
+            <li>Benchmarked and analyzed LLM responses with cross-functional AI teams to advance GenAI capabilities.</li>
+            <li>Developed experimentation methods and prompt libraries to improve factual grounding.</li>
+          </ul>
+        </div>
+
+        <!-- Instructional Assistant -->
+        <div class="relative mt-10 rounded-xl border border-slate-800/60 bg-slate-900/40 p-5 md:bg-transparent md:border-0 md:p-0">
+          <div class="text-sm text-emerald-300">09/2024 – 02/2025</div>
+          <div class="mt-1 text-lg font-semibold">Instructional Assistant</div>
+          <div class="text-slate-400">Northeastern University · Boston, MA, US</div>
+          <ul class="mt-3 text-slate-300">
+            <li>Improved classroom technology processes; 95% first-contact resolution and 25% increase in uptime and satisfaction.</li>
+            <li>Translated stakeholder feedback into actionable product requirements using ServiceNow analytics.</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Contact -->
+  <section id="contact" class="relative mx-auto max-w-7xl px-4 py-16 md:px-8">
+    <div class="card glass rounded-xl">
+      <div class="border-b border-slate-800/60 px-6 py-4 font-semibold">
+        <svg xmlns="http://www.w3.org/2000/svg" class="mr-2 inline-block h-5 w-5 text-emerald-300" viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M4 4h16v16H4z"/></svg>
+        Get in touch
+      </div>
+      <div class="grid gap-4 p-6 text-slate-300 md:grid-cols-2">
+        <p>I’m actively seeking roles where I can combine my Data Engineering, GenAI, and product management skills to own and deliver end-to-end data and AI products. If you're looking for an AWS-certified engineer who builds with a focus on business value, let's connect.</p>
+        <div class="flex flex-wrap items-center gap-3">
+          <a href="mailto:akashs101199@gmail.com" class="inline-flex items-center gap-2 rounded-md bg-emerald-500 px-4 py-2 text-slate-900 hover:bg-emerald-400">
+            <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M4 4h16v16H4z"/></svg>
+            Email me
+          </a>
+          <a href="https://cal.com/your-handle" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-2 rounded-md border border-emerald-400/40 px-4 py-2 text-emerald-300 hover:bg-emerald-400/10">
+            <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M8 7h8M8 12h6M7 21h10a2 2 0 002-2V5a2 2 0 00-2-2H7a2 2 0 00-2 2v14a2 2 0 002 2z"/></svg>
+            Book 15 min
+          </a>
+          <div class="flex items-center gap-2 text-sm text-slate-400">
+            <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7z"/></svg>
+            Cary, NC · Remote-ready
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="mx-auto max-w-7xl px-4 pb-10 text-sm text-slate-400 md:px-8">
+    <div class="flex flex-wrap items-center gap-4">
+      <a class="inline-flex items-center gap-2 hover:text-emerald-300" href="https://github.com/akashs101199" target="_blank" rel="noopener noreferrer">GitHub</a>
+      <a class="inline-flex items-center gap-2 hover:text-emerald-300" href="https://www.linkedin.com/in/akash101199/" target="_blank" rel="noopener noreferrer">LinkedIn</a>
+      <span class="inline-flex items-center gap-2">✅ AWS Certified Data Engineer</span>
+    </div>
+    <p class="mt-2" aria-live="polite">© <span id="year"></span> Akash Shanmuganathan · Built with HTML, Tailwind &amp; Three.js.</p>
   </footer>
 
-  <!-- Modal -->
-  <div
-    id="case-study-modal"
-    class="modal-overlay"
-    role="dialog"
-    aria-modal="true"
-    aria-hidden="true"
-    aria-labelledby="modal-title"
-  >
-    <div class="modal-content" tabindex="-1">
-      <button class="modal-close-button" id="modal-close-button" aria-label="Close modal">&times;</button>
-      <div id="modal-body" class="p-4 md:p-8">
-        <!-- Modal content injected by JS -->
-      </div>
-    </div>
-  </div>
-
+  <!-- Three.js minimal scene -->
+  <script src="https://cdn.jsdelivr.net/npm/three@0.160.0/build/three.min.js"></script>
   <script>
-    document.addEventListener('DOMContentLoaded', function () {
-      // --- Three.js Background Animation ---
-      let scene, camera, renderer, stars;
+    const canvas = document.getElementById('bg3d');
+    if (window.THREE && canvas) {
+      const renderer = new THREE.WebGLRenderer({ canvas, antialias: true, alpha: true });
+      const scene = new THREE.Scene();
+      const camera = new THREE.PerspectiveCamera(60, window.innerWidth / window.innerHeight, 0.1, 100);
+      camera.position.set(0, 0, 6);
 
-      function initBackground() {
-        const canvas = document.getElementById('bg-canvas');
-        if (!canvas || !window.THREE) return;
-        scene = new THREE.Scene();
-        camera = new THREE.PerspectiveCamera(60, window.innerWidth / window.innerHeight, 1, 1000);
-        camera.position.z = 1;
-
-        renderer = new THREE.WebGLRenderer({ canvas: canvas, antialias: true });
+      function resize() {
         renderer.setSize(window.innerWidth, window.innerHeight);
-        renderer.setClearColor(0x0a0a0a, 1);
-
-        const starGeo = new THREE.BufferGeometry();
-        const starVertices = [];
-        for (let i = 0; i < 8000; i++) {
-          const x = (Math.random() - 0.5) * 2000;
-          const y = (Math.random() - 0.5) * 2000;
-          const z = Math.random() * -2000;
-          starVertices.push(x, y, z);
-        }
-        starGeo.setAttribute('position', new THREE.Float32BufferAttribute(starVertices, 3));
-
-        const starMaterial = new THREE.PointsMaterial({
-          color: 0xaaaaaa,
-          size: 0.7,
-          transparent: true
-        });
-
-        stars = new THREE.Points(starGeo, starMaterial);
-        scene.add(stars);
-
-        window.addEventListener('resize', onWindowResize, false);
-        animate();
-      }
-
-      function onWindowResize() {
-        if (!camera || !renderer) return;
+        renderer.setPixelRatio(Math.min(window.devicePixelRatio || 1, 2));
         camera.aspect = window.innerWidth / window.innerHeight;
         camera.updateProjectionMatrix();
-        renderer.setSize(window.innerWidth, window.innerHeight);
       }
+      window.addEventListener('resize', resize, { passive: true }); resize();
 
-      function animate() {
-        if (stars) {
-          stars.position.z += 0.1;
-          if (stars.position.z > 1000) stars.position.z = -1000;
-        }
-        if(renderer && scene && camera) {
-            renderer.render(scene, camera);
-        }
-        requestAnimationFrame(animate);
+      const ambient = new THREE.AmbientLight(0xffffff, 0.7); scene.add(ambient);
+      const dir = new THREE.DirectionalLight(0xffffff, 0.7); dir.position.set(5, 5, 5); scene.add(dir);
+
+      const geo = new THREE.IcosahedronGeometry(1.5, 2);
+      const mat = new THREE.MeshStandardMaterial({ color: 0x6EE7B7, metalness: 0.2, roughness: 0.4, transparent: true, opacity: 0.15 });
+      const blob = new THREE.Mesh(geo, mat); scene.add(blob);
+
+      const pGeo = new THREE.BufferGeometry();
+      const count = 160; const positions = new Float32Array(count * 3);
+      for (let i = 0; i < count; i++) {
+        positions[i * 3] = (Math.random() - 0.5) * 14;
+        positions[i * 3 + 1] = (Math.random() - 0.5) * 10;
+        positions[i * 3 + 2] = (Math.random() - 0.5) * 14;
       }
+      pGeo.setAttribute('position', new THREE.BufferAttribute(positions, 3));
+      const pMat = new THREE.PointsMaterial({ size: 0.03, color: 0x94A3B8, transparent: true, opacity: 0.35 });
+      const particles = new THREE.Points(pGeo, pMat); scene.add(particles);
 
-      initBackground();
+      const prefersReduced = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+      let rafId = null, t = 0;
 
-      // --- Data for Modals ---
-      const contentData = {
-        "ms-northeastern": {
-          title: "Master of Science, Engineering Management",
-          details: `<h2 id="modal-title" class="text-3xl font-bold gradient-text mb-2">Master of Science, Engineering Management</h2><p class="text-sm uppercase tracking-widest text-slate-400 mb-6">Northeastern University | 2023 - 2025</p><div class="space-y-6 text-slate-300"><div><h3 class="font-bold text-lg text-sky-300 mb-2">Focus</h3><p>Bridging the gap between technical execution and strategic business leadership. Coursework focused on Product Development, Customer-Driven Technical Innovation, and Agile Project Management.</p></div></div>`
-        },
-        "bs-anna": {
-          title: "Bachelor's, Electrical & Electronics Engineering",
-          details: `<h2 id="modal-title" class="text-3xl font-bold gradient-text mb-2">Bachelor's, Electrical & Electronics Engineering</h2><p class="text-sm uppercase tracking-widest text-slate-400 mb-6">Anna University | 2017 - 2021</p><div class="space-y-6 text-slate-300"><div><h3 class="font-bold text-lg text-sky-300 mb-2">Focus</h3><p>Developed a strong foundation in engineering principles, problem-solving, and analytical thinking, which I now apply to software and product development.</p></div></div>`
-        },
-        "mypal-case-study": {
-          title: "MyPal - AI Learning Platform",
-          details: `<h2 id="modal-title" class="text-3xl font-bold gradient-text mb-2">MyPal - AI-Powered Adaptive Learning Platform</h2><p class="text-sm uppercase tracking-widest text-slate-400 mb-6">EDTECH PLATFORM</p><div class="space-y-6 text-slate-300"><div><h3 class="font-bold text-lg text-sky-300 mb-2">The Challenge</h3><p>Traditional one-size-fits-all curricula fail to engage students effectively. Educational institutions need adaptive tools to personalize learning experiences, improve retention, and cater to diverse needs in a growing EdTech market.</p></div><div><h3 class="font-bold text-lg text-sky-300 mb-2">My Approach & Contributions</h3><ul class="list-disc list-inside space-y-2"><li><b>Product Vision & Roadmap:</b> Defined the product vision and roadmap after conducting 30+ user interviews and extensive market analysis (TAM $5.7B).</li><li><b>MVP Definition:</b> Designed the MVP, including core features like LMS integration, adaptive assessments, and gamified engagement to enhance learning.</li><li><b>Data-Driven Improvements:</b> Built Tableau dashboards to track learner engagement, enabling data-driven product improvements and informing the go-to-market strategy.</li></ul></div><div class="mt-4 p-4 rounded-lg bg-sky-500/10 border-l-4 border-sky-400"><h3 class="font-bold text-lg text-white mb-2">The Outcome</h3><p class="text-slate-200">The defined MVP and feature set led to a <span class="font-bold text-sky-300 text-xl">25% boost</span> in simulated student retention, demonstrating the powerful impact of personalized, adaptive learning.</p></div></div>`
-        },
-        "localconnect-case-study": {
-          title: "LocalConnect - Digital Commerce Bridge",
-          details: `<h2 id="modal-title" class="text-3xl font-bold gradient-text mb-2">LocalConnect - Digital Commerce Bridge</h2><p class="text-sm uppercase tracking-widest text-slate-400 mb-6">E-COMMERCE & LOCAL BUSINESS EMPOWERMENT</p><div class="space-y-6 text-slate-300"><div><h3 class="font-bold text-lg text-sky-300 mb-2">The Challenge</h3><p>Local businesses struggle to compete with large retailers due to limited visibility and high transaction fees on existing platforms. This hinders local economic growth and limits consumer access to unique, high-quality products.</p></div><div><h3 class="font-bold text-lg text-sky-300 mb-2">My Approach & Contributions</h3><ul class="list-disc list-inside space-y-2"><li><b>Market Research & Strategy:</b> Conducted market research within the $700B U.S. retail market and used the 'Jobs-To-Be-Done' framework to define user needs and prioritize features.</li><li><b>Business Model Design:</b> Built a multi-faceted revenue model incorporating commissions, subscriptions, and sponsored placements to ensure platform sustainability and drive growth for small businesses.</li><li><b>Platform Design:</b> Conceptualized the marketplace architecture to address key visibility and affordability gaps for both local businesses and consumers.</li></ul></div><div class="mt-4 p-4 rounded-lg bg-sky-500/10 border-l-4 border-sky-400"><h3 class="font-bold text-lg text-white mb-2">The Outcome</h3><p class="text-slate-200">The LocalConnect concept provides a viable, low-cost alternative for local businesses to increase their market reach and for consumers to support their local economy, fostering community trust and empowerment.</p></div></div>`
-        },
-        "t9spm5-case-study": {
-          title: "Change Management - Research",
-          details: `<h2 id="modal-title" class="text-3xl font-bold gradient-text mb-2">Change Management - Research</h2><p class="text-sm uppercase tracking-widest text-slate-400 mb-6">PRODUCT MANAGEMENT / BUSINESS ANALYTICS</p><div class="space-y-6 text-slate-300"><div><h3 class="font-bold text-lg text-sky-300 mb-2">Problem Space</h3><p>Organizations face complex challenges scaling digital initiatives. T9SPM5 addresses the gap between siloed technology projects and enterprise-wide transformation efforts by tackling fragmented data pipelines, poor ROI visibility, and inefficient program execution.</p></div><div><h3 class="font-bold text-lg text-sky-300 mb-2">My Approach & Contributions</h3><ul class="list-disc list-inside space-y-2"><li><b>User Research:</b> Defined key personas including Chief Product Officer, Business Analyst, and Program Manager to align the solution with enterprise needs.</li><li><b>Competitive Analysis:</b> Conducted SWOT and Porter's Five Forces analysis to identify market opportunities and threats in the digital transformation space.</li><li><b>Strategic Roadmap:</b> Developed a multi-phase roadmap focusing on MVP development, feature expansion, and long-term AI-driven automation.</li></ul></div><div class="mt-4 p-4 rounded-lg bg-sky-500/10 border-l-4 border-sky-400"><h3 class="font-bold text-lg text-white mb-2">The Outcome</h3><p class="text-slate-200">This case study provides a comprehensive blueprint for an enterprise-grade framework that delivers measurable business value through strategic alignment and scalable design.</p></div></div>`
-        },
-        "hexaware-software-engineer": {
-          title: "Software Engineer at Hexaware Technologies",
-          details: `<h2 id="modal-title" class="text-3xl font-bold gradient-text mb-2">Software Engineer (Data Engineer)</h2><p class="text-sm uppercase tracking-widest text-slate-400 mb-6">HEXAWARE TECHNOLOGIES | JUN 2022 - JUL 2023</p><div class="space-y-6 text-slate-300"><div><h3 class="font-bold text-lg text-sky-300 mb-2">Key Achievements</h3><ul class="list-disc list-inside space-y-2"><li><b>ETL Workflows at Scale:</b> Designed and optimized ETL pipelines to process 10M+ records weekly using Python and SQL transformations, improving analytics turnaround by 40%.</li><li><b>Stock Market & Index Data Processing:</b> Automated ingestion and validation of daily CSV feeds for corporate actions and index rebalancing, applying schema validation and referential integrity rules to ensure compliance.</li><li><b>SQL Optimization:</b> Re-engineered stored procedures by modularizing queries and removing redundant joins, reducing execution time by 35% and accelerating client-facing reporting by 50%.</li><li><b>Testing & Automation:</b> Integrated tSQLt unit testing for stored procedures and automated ingestion pipelines in Python, reducing production defects by 40% and eliminating manual data handling.</li><li><b>Monitoring & Reliability:</b> Implemented pipeline monitoring with dashboards and log-based alerting, reducing downtime by 20% and ensuring SLA adherence.</li><li><b>Real-Time Enablement:</b> Introduced incremental processing and streaming ingestion to cut decision latency from 24 hours to under 1 hour, enabling faster compliance and trading insights.</li><li><b>Data Orchestration:</b> Built modular ELT pipelines using dbt and Airflow with CI/CD integration, ensuring consistent deployments and automated schema testing.</li></ul></div></div>`
-        },
-        "hexaware-associate-software-engineer": {
-          title: "Associate Software Engineer at Hexaware Technologies",
-          details: `<h2 id="modal-title" class="text-3xl font-bold gradient-text mb-2">Associate Software Engineer</h2><p class="text-sm uppercase tracking-widest text-slate-400 mb-6">HEXAWARE TECHNOLOGIES | JAN 2021 - MAY 2022</p><div class="space-y-6 text-slate-300"><div><h3 class="font-bold text-lg text-sky-300 mb-2">Key Achievements</h3><ul class="list-disc list-inside space-y-2"><li><b>Daily Data Feeds:</b> Processed and validated CSV input files for stock indices using SQL-based checks, ensuring 100% accuracy in downstream analytics.</li><li><b>ETL Development:</b> Developed Python and SQL jobs with scheduled workflows to automate ingestion and cleaning of large datasets, ensuring timely data availability for business users.</li><li><b>Dashboard Automation:</b> Built Tableau and JIRA dashboards with automated refresh pipelines, reducing manual reporting by 85% and enabling near real-time visibility of QA metrics.</li><li><b>Data Governance:</b> Implemented validation checks, lineage tracking, and audit documentation to ensure compliance with internal quality standards.</li></ul></div></div>`
-        },
-        "credit-risk-dashboard": {
-            title: "AI-Driven Credit Risk & Fraud Detection Dashboard",
-            details: `<h2 id="modal-title" class="text-3xl font-bold gradient-text mb-2">AI-Driven Credit Risk & Fraud Detection Dashboard</h2><p class="text-sm uppercase tracking-widest text-slate-400 mb-6">FINTECH / MACHINE LEARNING</p><div class="space-y-6 text-slate-300"><div><h3 class="font-bold text-lg text-sky-300 mb-2">Objective</h3><p>A robust end-to-end platform for dynamic credit risk analytics, fraud detection, and interactive explainability, powered by machine learning and modern data infrastructure.</p></div><div><h3 class="font-bold text-lg text-sky-300 mb-2">Tech Stack</h3><p><b>Backend:</b> Python, FastAPI, LightGBM, SHAP<br><b>Dashboard:</b> Streamlit, Plotly<br><b>Data:</b> Pandas, NumPy<br><b>Deployment:</b> Docker</p></div><div><h3 class="font-bold text-lg text-sky-300 mb-2">Features</h3><ul class="list-disc list-inside space-y-2"><li>Credit Risk Scoring Engine using XGBoost/LightGBM.</li><li>Real-time risk prediction served via a FastAPI endpoint.</li><li>Explainable AI (XAI) outputs using SHAP to interpret model decisions.</li><li>Intuitive Streamlit dashboard for non-technical users with real-time risk gauges and feature impact plots.</li></ul></div><div class="mt-4 p-4 rounded-lg bg-sky-500/10 border-l-4 border-sky-400"><h3 class="font-bold text-lg text-white mb-2">Outcome</h3><p class="text-slate-200">Delivers a clear, explainable credit risk assessment, allowing stakeholders to make informed decisions quickly and transparently.</p></div></div>`
-        },
-        "data-validation-engine": {
-            title: "Data Validation Engine for ML Pipelines",
-            details: `<h2 id="modal-title" class="text-3xl font-bold gradient-text mb-2">Data Validation Engine for ML Pipelines</h2><p class="text-sm uppercase tracking-widest text-slate-400 mb-6">DATA QUALITY / MLOPS</p><div class="space-y-6 text-slate-300"><div><h3 class="font-bold text-lg text-sky-300 mb-2">Objective</h3><p>A modular and scalable system for validating datasets in machine learning workflows, ensuring data quality and reliability before model training or inference.</p></div><div><h3 class="font-bold text-lg text-sky-300 mb-2">Tech Stack</h3><p><b>Core:</b> Python, Pandera<br><b>Dashboard:</b> Streamlit<br><b>Integration:</b> GitHub Actions, Slack</p></div><div><h3 class="font-bold text-lg text-sky-300 mb-2">Features</h3><ul class="list-disc list-inside space-y-2"><li>Schema validation for column data types and structure.</li><li>Custom business rule enforcement for domain-specific logic.</li><li>Data drift detection between reference and production datasets.</li><li>Generates detailed interactive dashboards and failure reports.</li></ul></div><div class="mt-4 p-4 rounded-lg bg-sky-500/10 border-l-4 border-sky-400"><h3 class="font-bold text-lg text-white mb-2">Outcome</h3><p class="text-slate-200">Creates a reliable data quality gate within ML pipelines, preventing bad data from impacting model performance and ensuring high pipeline reliability.</p></div></div>`
-        },
-        "nyc-taxi-analytics": {
-            title: "NYC Taxi Analytics with dbt + DuckDB",
-            details: `<h2 id="modal-title" class="text-3xl font-bold gradient-text mb-2">NYC Taxi Analytics with dbt + DuckDB</h2><p class="text-sm uppercase tracking-widest text-slate-400 mb-6">ANALYTICS ENGINEERING / ELT</p><div class="space-y-6 text-slate-300"><div><h3 class="font-bold text-lg text-sky-300 mb-2">Objective</h3><p>To build an end-to-end, local-first analytics pipeline using modern data stack tools (dbt and DuckDB) on a real-world public dataset.</p></div><div><h3 class="font-bold text-lg text-sky-300 mb-2">Tech Stack</h3><p><b>ELT:</b> dbt<br><b>Database:</b> DuckDB<br><b>Orchestration:</b> Airflow<br><b>Visualization:</b> Superset</p></div><div><h3 class="font-bold text-lg text-sky-300 mb-2">Features</h3><ul class="list-disc list-inside space-y-2"><li>Staging, intermediate, and mart layers for a clean, modular data model.</li><li>Data quality tests to ensure values are within realistic ranges and distributions are as expected.</li><li>Incremental ingestion models to efficiently process new data.</li><li>Interactive documentation and lineage graphs generated by dbt docs.</li></ul></div><div class="mt-4 p-4 rounded-lg bg-sky-500/10 border-l-4 border-sky-400"><h3 class="font-bold text-lg text-white mb-2">Outcome</h3><p class="text-slate-200">A fully functional, tested, and documented data pipeline that transforms raw taxi data into analytics-ready tables, showcasing best practices in analytics engineering.</p></div></div>`
-        },
-        "streaming-data-pipeline": {
-            title: "Real-Time Streaming Data Pipeline",
-            details: `<h2 id="modal-title" class="text-3xl font-bold gradient-text mb-2">Real-Time Streaming Data Pipeline with Analytics</h2><p class="text-sm uppercase tracking-widest text-slate-400 mb-6">STREAM PROCESSING / BIG DATA</p><div class="space-y-6 text-slate-300"><div><h3 class="font-bold text-lg text-sky-300 mb-2">Objective</h3><p>To build a scalable, real-time streaming data pipeline for ingesting, processing, and visualizing live event data with low latency.</p></div><div><h3 class="font-bold text-lg text-sky-300 mb-2">Tech Stack</h3><p><b>Ingestion:</b> Apache Kafka<br><b>Processing:</b> Spark Structured Streaming (PySpark)<br><b>Storage:</b> PostgreSQL, Parquet<br><b>Orchestration:</b> Apache Airflow<br><b>Monitoring:</b> Grafana, Slack<br><b>Visualization:</b> Streamlit</p></div><div><h3 class="font-bold text-lg text-sky-300 mb-2">Features</h3><ul class="list-disc list-inside space-y-2"><li>Kafka producer simulates high-throughput event streams (30k+ events/min).</li><li>Spark Streaming job performs real-time aggregations, cleaning, and enrichment.</li><li>Airflow DAGs manage both streaming and batch components of the workflow.</li><li>Grafana dashboards monitor pipeline health (throughput, latency, errors).</li><li>Automated Slack alerts for anomalies or pipeline failures.</li></ul></div><div class="mt-4 p-4 rounded-lg bg-sky-500/10 border-l-4 border-sky-400"><h3 class="font-bold text-lg text-white mb-2">Outcome</h3><p class="text-slate-200">Achieved a p95 latency of under 60 seconds for end-to-end processing, enabling near real-time analytics for use cases like surge pricing or anomaly detection.</p></div></div>`
-        },
-        "finsight-finance-app": {
-            title: "FinSight – Personal Finance Analytics & AI Assistant",
-            details: `<h2 id="modal-title" class="text-3xl font-bold gradient-text mb-2">FinSight – Personal Finance Analytics & AI Assistant</h2><p class="text-sm uppercase tracking-widest text-slate-400 mb-6">FULL-STACK DEVELOPMENT / AI INTEGRATION</p><div class="space-y-6 text-slate-300"><div><h3 class="font-bold text-lg text-sky-300 mb-2">Objective</h3><p>A full-stack personal finance web application that helps users upload and analyze their financial transactions, visualize spending insights, and receive personalized financial advice from a GPT-powered assistant.</p></div><div><h3 class="font-bold text-lg text-sky-300 mb-2">Tech Stack</h3><p><b>Frontend:</b> React, Chart.js, Axios<br><b>Backend:</b> Flask, PostgreSQL, SQLAlchemy, Pandas<br><b>AI:</b> OpenRouter.ai (GPT)<br><b>Deployment:</b> Vercel (Frontend), Render (Backend)</p></div><div><h3 class="font-bold text-lg text-sky-300 mb-2">Features</h3><ul class="list-disc list-inside space-y-2"><li>Secure user registration and JWT-based authentication.</li><li>CSV upload and parsing for financial transactions.</li><li>Interactive dashboards for visualizing spending by category, merchant, and monthly trends.</li><li>An AI assistant, powered by GPT via OpenRouter, to provide personalized financial advice based on user data.</li></ul></div><div class="mt-4 p-4 rounded-lg bg-sky-500/10 border-l-4 border-sky-400"><h3 class="font-bold text-lg text-white mb-2">Outcome</h3><p class="text-slate-200">A complete, deployed web application that provides users with powerful tools to understand their finances and receive actionable, AI-driven insights.</p></div></div>`
+      function renderFrame() {
+        if (!prefersReduced) {
+          t += 0.01;
+          const s = 1 + Math.sin(t * 0.8) * 0.04;
+          blob.scale.set(s, s, s);
+          blob.rotation.y += 0.003; blob.rotation.x += 0.0025;
+          particles.rotation.y += 0.0008;
         }
-      };
-
-      // --- Modal & Interaction Logic ---
-      const modal = document.getElementById('case-study-modal');
-      const modalBody = document.getElementById('modal-body');
-      const closeModalButton = document.getElementById('modal-close-button');
-
-      const openModal = (item) => {
-        if (!item || !item.details) return;
-        modalBody.innerHTML = item.details;
-        modal.classList.add('active');
-        modal.setAttribute('aria-hidden', 'false');
-        document.body.style.overflow = 'hidden';
-        modal.querySelector('.modal-content').focus();
-      };
-
-      const closeModal = () => {
-        modal.classList.remove('active');
-        modal.setAttribute('aria-hidden', 'true');
-        document.body.style.overflow = '';
-      };
-
-      if (closeModalButton) {
-        closeModalButton.addEventListener('click', closeModal);
+        renderer.render(scene, camera);
+        if (!document.hidden) rafId = requestAnimationFrame(renderFrame);
       }
-      modal.addEventListener('click', (e) => {
-        if (e.target === modal) closeModal();
+      document.addEventListener('visibilitychange', () => {
+        if (document.hidden && rafId) { cancelAnimationFrame(rafId); rafId = null; }
+        else if (!rafId) renderFrame();
       });
-      document.addEventListener('keydown', (e) => {
-        if (e.key === 'Escape') closeModal();
-      });
+      renderFrame();
+    }
+  </script>
 
-      document.querySelectorAll('[data-item-id]').forEach(element => {
-        element.addEventListener('click', (event) => {
-          const container = event.currentTarget;
-          const itemId = container.dataset.itemId;
-          const item = contentData[itemId];
-          if (item && item.details) {
-            openModal(item);
-          }
-        });
-      });
+  <!-- UX: header hide on scroll + mobile menu -->
+  <script>
+    let last = 0, ticking = false; const header = document.getElementById('header'); const threshold = 8;
+    function onScroll(){
+      const y = window.scrollY;
+      if (Math.abs(y - last) < threshold) { ticking = false; return; }
+      if (y > last && y > header.offsetHeight) header.classList.add('hide');
+      else header.classList.remove('hide');
+      last = y <= 0 ? 0 : y; ticking = false;
+    }
+    addEventListener('scroll', () => { if (!ticking) { requestAnimationFrame(onScroll); ticking = true; } }, { passive: true });
 
-      // --- Tab Logic ---
-      const tabButtons = document.querySelectorAll('.tab-button');
-      const tabContents = document.querySelectorAll('.tab-content');
+    const mbtn = document.getElementById('menuBtn');
+    const mmenu = document.getElementById('mobileMenu');
+    mbtn.addEventListener('click', ()=> {
+      mmenu.classList.toggle('hidden');
+      const open = !mmenu.classList.contains('hidden');
+      mbtn.setAttribute('aria-expanded', String(open));
+      if (open) mmenu.querySelector('a')?.focus();
+    });
+    document.addEventListener('keydown', (e)=>{
+      if (e.key === 'Escape' && !mmenu.classList.contains('hidden')) {
+        mmenu.classList.add('hidden');
+        mbtn.setAttribute('aria-expanded','false');
+        mbtn.focus();
+      }
+    });
 
-      const activateTab = (tabId) => {
-        tabButtons.forEach(btn => {
-          const isActive = btn.dataset.tab === tabId;
-          btn.classList.toggle('active', isActive);
-          btn.setAttribute('aria-selected', String(isActive));
-        });
-        tabContents.forEach(content => {
-          content.classList.toggle('active', content.id === `${tabId}-panel`);
-        });
-      };
+    document.getElementById('year').textContent = new Date().getFullYear();
 
-      tabButtons.forEach(button => {
-        button.addEventListener('click', () => {
-          activateTab(button.dataset.tab);
-        });
-      });
+    document.querySelectorAll('#mobileMenu a').forEach(a=> a.addEventListener('click', ()=> {
+      mmenu.classList.add('hidden');
+      mbtn.setAttribute('aria-expanded','false');
+    }));
 
-      // --- Fade-in Sections on Scroll ---
-      const fadeInSections = document.querySelectorAll('.fade-in-section');
-      const observer = new IntersectionObserver((entries) => {
-        entries.forEach(entry => {
-          if (entry.isIntersecting) {
-            entry.target.classList.add('is-visible');
-          }
-        });
-      }, { threshold: 0.1 });
-
-      fadeInSections.forEach(section => observer.observe(section));
+    // If Credly loads after DOM ready, re-init embeds just in case
+    document.addEventListener('DOMContentLoaded', () => {
+      if (window.CREDLY && typeof window.CREDLY.init === 'function') {
+        window.CREDLY.init();
+      }
     });
   </script>
+
+  <!-- One-time Credly embed script (HTTPS) -->
+  <script type="text/javascript" async src="https://cdn.credly.com/assets/utilities/embed.js"></script>
 </body>
 </html>
