@@ -84,7 +84,11 @@ ${resumeText}
         res.json({ reply: text });
     } catch (error) {
         console.error("Error generating chat response:", error);
-        res.status(500).json({ error: "Failed to generate response" });
+        res.status(500).json({
+            error: "Failed to generate response",
+            details: error.message,
+            model: "gemini-1.5-flash-latest"
+        });
     }
 });
 
