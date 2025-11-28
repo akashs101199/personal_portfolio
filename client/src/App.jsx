@@ -247,13 +247,28 @@ const Navbar = () => (
                 <div className="w-10 h-10 bg-black border border-cyan-500 flex items-center justify-center text-cyan-400 font-bold font-mono group-hover:bg-cyan-500 group-hover:text-black transition-colors">AS</div>
                 <GlitchText text="AKASH.SYS" className="font-mono font-bold text-lg tracking-widest" color="text-white" />
             </div>
-            <nav className="hidden md:flex gap-8 text-sm font-bold font-mono text-slate-400">
-                {['SKILLS', 'PROJECTS', 'EXPERIENCE', 'CONTACT'].map(item => (
-                    <a key={item} href={`#${item.toLowerCase()}`} className="hover:text-cyan-400 transition-colors interactive relative group">
+            <nav className="hidden md:flex items-center gap-8">
+                {['About', 'Certifications', 'Education', 'Skills', 'Experience', 'Projects'].map((item) => (
+                    <a
+                        key={item}
+                        href={`#${item.toLowerCase()}`}
+                        className="text-sm font-mono text-slate-400 hover:text-cyan-400 transition-colors relative group"
+                    >
                         {item}
                         <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-pink-500 transition-all group-hover:w-full" />
                     </a>
                 ))}
+                <a
+                    href="/resume.pdf"
+                    download="Akash_Shanmuganathan_Resume.pdf"
+                    className="flex items-center gap-2 text-sm font-mono text-cyan-400 hover:text-pink-500 transition-colors group"
+                >
+                    <Download size={16} />
+                    <span className="relative">
+                        RESUME_FILE
+                        <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-pink-500 transition-all group-hover:w-full" />
+                    </span>
+                </a>
             </nav>
             <a href="#contact" className="interactive px-6 py-2 bg-cyan-500 text-black font-bold font-mono text-sm hover:bg-pink-500 hover:text-white transition-colors clip-path-polygon">
                 INITIATE_CONTACT
@@ -843,6 +858,7 @@ const Contact = () => {
         message: ''
     });
     const [status, setStatus] = useState('idle'); // idle, submitting, success, error
+    const API_URL = import.meta.env.VITE_API_URL || '';
 
     const handleChange = (e) => {
         setFormData({ ...formData, [e.target.name]: e.target.value });
@@ -852,7 +868,7 @@ const Contact = () => {
         e.preventDefault();
         setStatus('submitting');
         try {
-            const res = await fetch('/api/contact', {
+            const res = await fetch(`${API_URL}/api/contact`, {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify(formData)
@@ -1085,6 +1101,8 @@ const Chatbot = () => {
         scrollToBottom();
     }, [messages, isOpen]);
 
+    const API_URL = import.meta.env.VITE_API_URL || '';
+
     const handleSend = async (e) => {
         e.preventDefault();
         if (!input.trim()) return;
@@ -1095,7 +1113,7 @@ const Chatbot = () => {
         setIsLoading(true);
 
         try {
-            const res = await fetch('/api/chat', {
+            const res = await fetch(`${API_URL}/api/chat`, {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify({ message: userMessage })
