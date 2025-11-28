@@ -12,6 +12,7 @@ import {
     Activity, CheckCircle, ArrowRight, Terminal, Server, Cpu,
     Briefcase, Calendar, MapPin, Layers, Globe, Radio, MessageSquare, X, Send
 } from 'lucide-react';
+import VoiceInterface from './components/VoiceInterface';
 
 // --- Assets & Data ---
 const SKILLS = [
@@ -1233,6 +1234,7 @@ const Chatbot = () => {
 export default function App() {
     return (
         <div className="min-h-screen text-slate-200 selection:bg-pink-500/30 bg-black">
+            <VoiceInterface />
             <Scene />
             <Navbar />
             <main>
