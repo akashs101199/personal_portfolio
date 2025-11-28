@@ -15,6 +15,7 @@ import {
 import VoiceInterface from './components/VoiceInterface';
 import GlitchText from './components/GlitchText';
 import SkillCard from './components/SkillCard';
+import CyberCursor from './components/CyberCursor';
 
 // --- Assets & Data ---
 const SKILLS = [
@@ -1205,9 +1206,10 @@ const Chatbot = () => {
 
 export default function App() {
     return (
-        <div className="min-h-screen text-slate-200 selection:bg-pink-500/30 bg-black">
-            <VoiceInterface />
+        <div className="bg-[#050505] min-h-screen text-slate-200 selection:bg-cyan-500/30 selection:text-cyan-100 overflow-x-hidden">
+            <CyberCursor />
             <Scene />
+            <VoiceInterface />
             <Navbar />
             <main>
                 <Hero />
