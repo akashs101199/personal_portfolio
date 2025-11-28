@@ -132,12 +132,27 @@ ${message}
 });
 
 // Serve static files from the React app in production
+// Serve static files from the React app in production
 if (process.env.NODE_ENV === 'production') {
-    app.use(express.static(path.join(__dirname, '../client/dist')));
+    const clientDistPath = path.join(__dirname, '../client/dist');
+    const clientIndexPath = path.join(clientDistPath, 'index.html');
 
-    app.get('*', (req, res) => {
-        res.sendFile(path.join(__dirname, '../client/dist/index.html'));
-    });
+    if (fs.existsSync(clientDistPath)) {
+        app.use(express.static(clientDistPath));
+
+        app.get('*', (req, res) => {
+            if (fs.existsSync(clientIndexPath)) {
+                res.sendFile(clientIndexPath);
+            } else {
+                res.status(404).send('Client build not found. If this is a split deployment, access the frontend via Netlify.');
+            }
+        });
+    } else {
+        console.log('Client dist folder not found. Running in API-only mode.');
+        app.get('/', (req, res) => {
+            res.send('API Server Running. Access frontend via Netlify.');
+        });
+    }
 }
 
 app.listen(PORT, () => {
