@@ -95,7 +95,7 @@ const VoiceInterface = () => {
     };
 
     return (
-        <div className="fixed left-4 top-1/2 -translate-y-1/2 z-50 hidden xl:flex flex-col gap-4 w-80">
+        <div className="fixed left-4 top-1/2 -translate-y-1/2 z-50 flex flex-col gap-4 w-80">
             {/* Cyberpunk Container */}
             <div className="bg-black/80 backdrop-blur-md border border-cyan-500/50 p-6 rounded-lg relative overflow-hidden group">
                 {/* Scanline */}
