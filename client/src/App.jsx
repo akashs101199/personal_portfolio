@@ -858,7 +858,7 @@ const Contact = () => {
         message: ''
     });
     const [status, setStatus] = useState('idle'); // idle, submitting, success, error
-    const API_URL = import.meta.env.VITE_API_URL || '';
+    const API_URL = (import.meta.env.VITE_API_URL || '').replace(/\/$/, '');
 
     const handleChange = (e) => {
         setFormData({ ...formData, [e.target.name]: e.target.value });
@@ -1101,7 +1101,7 @@ const Chatbot = () => {
         scrollToBottom();
     }, [messages, isOpen]);
 
-    const API_URL = import.meta.env.VITE_API_URL || '';
+    const API_URL = (import.meta.env.VITE_API_URL || '').replace(/\/$/, '');
 
     const handleSend = async (e) => {
         e.preventDefault();
