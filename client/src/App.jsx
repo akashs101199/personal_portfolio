@@ -13,15 +13,40 @@ import {
     Briefcase, Calendar, MapPin, Layers, Globe, Radio, MessageSquare, X, Send
 } from 'lucide-react';
 import VoiceInterface from './components/VoiceInterface';
+import GlitchText from './components/GlitchText';
+import SkillCard from './components/SkillCard';
 
 // --- Assets & Data ---
 const SKILLS = [
-    "Claude", "AWS Bedrock", "LangChain", "LangGraph", "CrewAI", "MCP",
-    "AgentCore", "RAG", "Prompt Eng", "Pinecone", "ChromaDB", "FAISS",
-    "OpenSearch", "Python", "TypeScript", "Node.js", "React", "FastAPI",
-    "SQL", "Cursor", "Copilot", "AWS Glue", "PySpark", "ETL",
-    "AWS CDK", "Docker", "RDS", "DynamoDB", "S3", "CI/CD",
-    "Medallion Arch", "AppFlow", "Vector DB", "GenAI"
+    { name: "Claude", usage: "Core LLM for Banking Agent" },
+    { name: "AWS Bedrock", usage: "Infrastructure for GenAI Agents" },
+    { name: "LangChain", usage: "Orchestration for Banking Logic" },
+    { name: "LangGraph", usage: "Agentic Workflow Design" },
+    { name: "CrewAI", usage: "Multi-Agent Orchestration" },
+    { name: "MCP", usage: "Tool Integration Standard" },
+    { name: "AgentCore", usage: "Custom Agent Framework" },
+    { name: "RAG", usage: "Knowledge Retrieval System" },
+    { name: "Prompt Eng", usage: "System Prompt Optimization" },
+    { name: "ChromaDB", usage: "Vector Store for RAG" },
+    { name: "Python", usage: "Backend Logic & AI Scripts" },
+    { name: "TypeScript", usage: "Frontend Type Safety" },
+    { name: "Node.js", usage: "Backend API Server" },
+    { name: "React", usage: "Portfolio & Dashboards" },
+    { name: "FastAPI", usage: "Microservices Interface" },
+    { name: "SQL", usage: "Relational Data Management" },
+    { name: "Cursor", usage: "AI-Assisted Development" },
+    { name: "Copilot", usage: "Code Generation Assistant" },
+    { name: "AWS Glue", usage: "ETL Data Processing" },
+    { name: "PySpark", usage: "Big Data Transformation" },
+    { name: "ETL", usage: "Data Pipeline Construction" },
+    { name: "Docker", usage: "Containerization & Deployment" },
+    { name: "RDS", usage: "Transactional Database" },
+    { name: "S3", usage: "Object Storage & Hosting" },
+    { name: "CI/CD", usage: "Automated Deployment Pipelines" },
+    { name: "Medallion Arch", usage: "Data Lake Organization" },
+    { name: "AppFlow", usage: "SaaS Data Integration" },
+    { name: "Vector DB", usage: "Semantic Search Indexing" },
+    { name: "GenAI", usage: "Generative Model Implementation" }
 ];
 
 // --- 3D Components ---
@@ -157,7 +182,7 @@ const SkillHexGrid = () => {
 
         // Spiral algorithm for hex grid
         // Center
-        if (count < SKILLS.length) items.push({ x: 0, y: 0, word: SKILLS[count++], color: "#22d3ee" });
+        if (count < SKILLS.length) items.push({ x: 0, y: 0, word: SKILLS[count++].name, color: "#22d3ee" });
 
         let layer = 1;
         while (count < SKILLS.length) {
@@ -184,7 +209,7 @@ const SkillHexGrid = () => {
                 const y = Math.sin(angle) * radius * layer;
                 items.push({
                     x, y,
-                    word: SKILLS[count++],
+                    word: SKILLS[count++].name,
                     color: layer % 2 === 0 ? "#f472b6" : "#22d3ee"
                 });
             }
@@ -231,25 +256,17 @@ const Scene = () => (
 // --- UI Components ---
 
 
-const GlitchText = ({ text, className, color = "text-cyan-400" }) => {
-    return (
-        <div className={`relative group inline-block ${className}`}>
-            <span className={`relative z-10 ${color}`}>{text}</span>
-            <span className="absolute top-0 left-0 -z-10 w-full h-full text-pink-500 opacity-0 group-hover:opacity-100 group-hover:translate-x-[3px] group-hover:translate-y-[1px] transition-all duration-75 select-none">{text}</span>
-            <span className="absolute top-0 left-0 -z-10 w-full h-full text-yellow-400 opacity-0 group-hover:opacity-100 group-hover:-translate-x-[3px] group-hover:-translate-y-[1px] transition-all duration-75 select-none">{text}</span>
-        </div>
-    );
-};
+
 
 const Navbar = () => (
     <header className="fixed top-0 w-full z-50 bg-black/80 backdrop-blur-md border-b border-white/10 py-4">
         <div className="max-w-7xl mx-auto px-6 flex justify-between items-center">
             <div className="flex items-center gap-3 interactive group">
                 <div className="w-10 h-10 bg-black border border-cyan-500 flex items-center justify-center text-cyan-400 font-bold font-mono group-hover:bg-cyan-500 group-hover:text-black transition-colors">AS</div>
-                <GlitchText text="AKASH.SYS" className="font-mono font-bold text-lg tracking-widest" color="text-white" />
+                <GlitchText text="Akash Shanmuganathan" className="font-mono font-bold text-lg tracking-widest" color="text-white" />
             </div>
             <nav className="hidden md:flex items-center gap-8">
-                {['About', 'Certifications', 'Education', 'Skills', 'Experience', 'Projects'].map((item) => (
+                {['Certifications', 'Education', 'Skills', 'Experience', 'Projects'].map((item) => (
                     <a
                         key={item}
                         href={`#${item.toLowerCase()}`}
@@ -288,7 +305,7 @@ const Hero = () => (
                 </div>
                 <h1 className="text-6xl md:text-8xl font-black mb-6 leading-none tracking-tighter text-white">
                     AGENTIC <br />
-                    <span className="text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 via-pink-500 to-yellow-400 animate-gradient">ARCHITECT</span>
+                    <span className="text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 via-pink-500 to-yellow-400 animate-gradient">AI ENGINEER</span>
                 </h1>
                 <p className="text-slate-400 text-lg mb-8 max-w-lg font-mono border-l-2 border-cyan-500 pl-4">
                     Constructing autonomous digital intelligences and resilient data infrastructures.
@@ -454,75 +471,30 @@ const Skills = () => {
     };
 
     return (
-        <section id="skills" className="py-20 relative overflow-hidden">
-            {/* Animated Scanlines */}
-            <div className="absolute inset-0 pointer-events-none opacity-10">
-                <div className="absolute inset-0 bg-gradient-to-b from-transparent via-cyan-500/20 to-transparent animate-scan" />
-            </div>
+        <section id="skills" className="min-h-screen py-20 px-6 relative">
+            <div className="max-w-7xl mx-auto">
+                <motion.div
+                    initial={{ opacity: 0, y: 20 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    viewport={{ once: true }}
+                    className="mb-16"
+                >
+                    <div className="flex items-center gap-4 mb-4">
+                        <div className="h-px flex-1 bg-gradient-to-r from-transparent via-cyan-500 to-transparent opacity-50" />
+                        <h2 className="text-4xl md:text-5xl font-black text-white text-center tracking-tighter">
+                            SYSTEM <span className="text-cyan-400">CAPABILITIES</span>
+                        </h2>
+                        <div className="h-px flex-1 bg-gradient-to-r from-transparent via-cyan-500 to-transparent opacity-50" />
+                    </div>
+                    <p className="text-center text-slate-400 font-mono text-sm tracking-widest uppercase">
+                        Loaded Modules: {SKILLS.length} // Status: OPTIMIZED
+                    </p>
+                </motion.div>
 
-            <div className="max-w-7xl mx-auto px-6 relative z-10">
-                <h2 className="text-4xl font-black text-white mb-4 flex items-center gap-4">
-                    <span className="w-4 h-12 bg-pink-500 animate-pulse" />
-                    <GlitchText text="TECH_STACK" color="text-white" />
-                    <span className="text-xs text-cyan-400 font-mono ml-auto hidden md:block animate-pulse">
-                        [ {SKILLS.length} MODULES_LOADED ]
-                    </span>
-                </h2>
-                <p className="text-slate-400 mb-12 max-w-2xl font-mono border-l-2 border-slate-700 pl-4">
-                    Arsenal of tools for digital construction.
-                    <br />
-                    <span className="text-cyan-400 text-xs">// Hover to activate neural pathways</span>
-                </p>
-
-                <div className="space-y-8">
-                    {skillCategories.map((category, catIndex) => (
-                        <motion.div
-                            key={category.name}
-                            initial={{ opacity: 0, x: -50 }}
-                            whileInView={{ opacity: 1, x: 0 }}
-                            viewport={{ once: true }}
-                            transition={{ delay: catIndex * 0.1 }}
-                            className="relative"
-                        >
-                            {/* Category Header */}
-                            <div className="flex items-center gap-3 mb-4">
-                                <div className={`w-2 h-2 bg-${category.color}-500 animate-pulse`} />
-                                <h3 className="text-sm font-bold font-mono text-slate-500 tracking-widest">
-                                    {category.name.toUpperCase()}
-                                </h3>
-                                <div className="flex-1 h-px bg-gradient-to-r from-slate-800 to-transparent" />
-                            </div>
-
-                            {/* Skills Grid */}
-                            <div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-6 gap-3">
-                                {category.skills.map((skill, i) => (
-                                    <motion.div
-                                        key={skill}
-                                        initial={{ opacity: 0, y: 20 }}
-                                        whileInView={{ opacity: 1, y: 0 }}
-                                        viewport={{ once: true }}
-                                        transition={{ delay: (catIndex * 0.1) + (i * 0.02) }}
-                                        whileHover={{ scale: 1.05, y: -2 }}
-                                        className={`
-                                            relative group
-                                            bg-black/50 border backdrop-blur-sm
-                                            px-4 py-3 text-center font-mono text-sm
-                                            transition-all cursor-default
-                                            ${getColorClasses(category.color)}
-                                        `}
-                                    >
-                                        {/* Corner Accents */}
-                                        <div className="absolute top-0 left-0 w-2 h-2 border-t border-l opacity-0 group-hover:opacity-100 transition-opacity" style={{ borderColor: 'currentColor' }} />
-                                        <div className="absolute bottom-0 right-0 w-2 h-2 border-b border-r opacity-0 group-hover:opacity-100 transition-opacity" style={{ borderColor: 'currentColor' }} />
-
-                                        {skill}
-
-                                        {/* Glitch overlay on hover */}
-                                        <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/5 to-transparent opacity-0 group-hover:opacity-100 group-hover:animate-shimmer pointer-events-none" />
-                                    </motion.div>
-                                ))}
-                            </div>
-                        </motion.div>
+                {/* Cyberdeck Grid */}
+                <div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-6 gap-4">
+                    {SKILLS.map((skill, index) => (
+                        <SkillCard key={index} skill={skill} index={index} />
                     ))}
                 </div>
             </div>
@@ -1245,8 +1217,7 @@ export default function App() {
                 <Experience />
                 <Projects />
                 <Contact />
-                <Chatbot />
-                {/* Add other sections similarly */}
+                {/* Chatbot integrated into VoiceInterface */}
             </main>
         </div>
     );
