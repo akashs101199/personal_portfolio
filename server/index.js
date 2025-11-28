@@ -31,25 +31,39 @@ app.get('/api/health', (req, res) => {
     res.json({ status: 'ok', message: 'Server is running' });
 });
 
-// Load Resume Data
-let resumeText = "";
+// Load Resume and Project Data
+let contextData = "";
 const resumePath = path.join(__dirname, '../Resume/Akash_Shanmuganathan_Resume.docx');
+const projectsDir = path.join(__dirname, '../Projects');
 
-const loadResume = async () => {
+const loadContext = async () => {
     try {
+        // Load Resume
         if (fs.existsSync(resumePath)) {
             const result = await mammoth.extractRawText({ path: resumePath });
-            resumeText = result.value;
+            contextData += `\n\n**RESUME DATA:**\n${result.value}`;
             console.log("Resume loaded successfully");
         } else {
             console.warn("Resume file not found at:", resumePath);
         }
+
+        // Load Projects
+        if (fs.existsSync(projectsDir)) {
+            const files = fs.readdirSync(projectsDir);
+            for (const file of files) {
+                if (file.endsWith('.md')) {
+                    const content = fs.readFileSync(path.join(projectsDir, file), 'utf-8');
+                    contextData += `\n\n**PROJECT FILE (${file}):**\n${content}`;
+                    console.log(`Loaded project file: ${file}`);
+                }
+            }
+        }
     } catch (error) {
-        console.error("Error loading resume:", error);
+        console.error("Error loading context data:", error);
     }
 };
 
-loadResume();
+loadContext();
 
 // Chat Endpoint
 app.post('/api/chat', async (req, res) => {
@@ -73,7 +87,7 @@ Your purpose is to provide intel on Akash's capabilities, mission history (proje
 - Style: Concise, precise, and slightly robotic but helpful.
 
 **CONTEXT (DATA_BANKS):**
-${resumeText}
+${contextData}
 
 **INSTRUCTIONS:**
 - **FORMATTING:** Use Markdown. Use **bold** for key terms. Use lists for specs.
