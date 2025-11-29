@@ -185,35 +185,69 @@ const CyberpunkSpectrum = ({ isActive, mode }) => {
 };
 
 // Boot Sequence Component
-const BootSequence = ({ onComplete }) => {
+const BootSequence = ({ onComplete, isServerReady }) => {
     const [lines, setLines] = useState([]);
-    const bootText = [
-        "INITIALIZING NOVA KERNEL...",
-        "LOADING NEURAL MODULES...",
-        "CHECKING INTEGRITY... OK",
-        "ESTABLISHING SECURE LINK...",
-        "ACCESS GRANTED."
-    ];
+    const isServerReadyRef = useRef(isServerReady);
+    const hasWaitingMessageRef = useRef(false);
+
+    // Keep ref updated
+    useEffect(() => {
+        isServerReadyRef.current = isServerReady;
+    }, [isServerReady]);
 
     useEffect(() => {
-        let delay = 0;
-        bootText.forEach((line, index) => {
-            setTimeout(() => {
-                setLines(prev => [...prev, line]);
-                if (index === bootText.length - 1) {
-                    setTimeout(onComplete, 800);
+        const bootText = [
+            "INITIALIZING NEURAL INTERFACE...",
+            "LOADING KNOWLEDGE BASE...",
+            "CALIBRATING SENSORS...",
+            "ESTABLISHING SECURE CONNECTION..."
+        ];
+
+        let currentIndex = 0;
+        let timeoutId;
+
+        const addLine = () => {
+            if (currentIndex < bootText.length) {
+                setLines(prev => [...prev, bootText[currentIndex]]);
+                currentIndex++;
+                timeoutId = setTimeout(addLine, Math.random() * 300 + 200);
+            } else {
+                // All initial lines loaded, check server status via ref
+                if (isServerReadyRef.current) {
+                    setLines(prev => [...prev, "CONNECTION ESTABLISHED.", "SYSTEM ONLINE."]);
+                    timeoutId = setTimeout(onComplete, 800);
+                } else {
+                    // Server not ready, show waiting message
+                    if (!hasWaitingMessageRef.current) {
+                        setLines(prev => [...prev, "WAITING FOR SERVER UPLINK...", "DETECTED COLD START...", "WAKING UP BACKEND NODES..."]);
+                        hasWaitingMessageRef.current = true;
+                    }
                 }
-            }, delay);
-            delay += Math.random() * 300 + 200;
-        });
-    }, []);
+            }
+        };
+
+        addLine();
+
+        return () => clearTimeout(timeoutId);
+    }, []); // Run once on mount
+
+    // Effect to handle server becoming ready while waiting
+    useEffect(() => {
+        if (isServerReady && hasWaitingMessageRef.current) {
+            setLines(prev => [...prev, "UPLINK ESTABLISHED.", "SYSTEM ONLINE."]);
+            const completeTimeout = setTimeout(onComplete, 800);
+            return () => clearTimeout(completeTimeout);
+        }
+    }, [isServerReady, onComplete]);
 
     return (
         <div className="absolute inset-0 bg-black z-50 flex flex-col justify-end p-6 font-mono text-xs">
             {lines.map((line, i) => (
                 <div key={i} className="text-cyan-500 mb-1">
                     <span className="text-cyan-800 mr-2">[{new Date().toLocaleTimeString()}]</span>
-                    <span className="typing-effect">{line}</span>
+                    <span className={`typing-effect ${line && line.includes("WAITING") ? "animate-pulse text-yellow-500" : ""}`}>
+                        {line || ""}
+                    </span>
                 </div>
             ))}
             <div className="w-3 h-5 bg-cyan-500 animate-pulse mt-2" />
@@ -246,7 +280,36 @@ const VoiceInterface = () => {
         scrollToBottom();
     }, [messages, isOpen, isBooting]);
 
+    const [isServerReady, setIsServerReady] = useState(false);
     const hasBootedRef = useRef(false);
+
+    // Poll server health
+    useEffect(() => {
+        const checkHealth = async () => {
+            try {
+                const res = await fetch(`${API_URL}/api/health`);
+                if (res.ok) {
+                    setIsServerReady(true);
+                }
+            } catch (err) {
+                console.log("Server waking up...");
+            }
+        };
+
+        // Check immediately
+        checkHealth();
+
+        // Poll every 2 seconds until ready
+        const interval = setInterval(() => {
+            if (!isServerReady) {
+                checkHealth();
+            } else {
+                clearInterval(interval);
+            }
+        }, 2000);
+
+        return () => clearInterval(interval);
+    }, [isServerReady, API_URL]);
 
     useEffect(() => {
         if (isOpen && !hasBootedRef.current) {
@@ -395,7 +458,7 @@ const VoiceInterface = () => {
                                     exit={{ opacity: 0 }}
                                     className="absolute inset-0 z-[60] bg-black"
                                 >
-                                    <BootSequence onComplete={() => setIsBooting(false)} />
+                                    <BootSequence onComplete={() => setIsBooting(false)} isServerReady={isServerReady} />
                                 </motion.div>
                             )}
                         </AnimatePresence>
