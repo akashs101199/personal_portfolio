@@ -6,6 +6,10 @@ A next-generation personal portfolio website built with a **Cyberpunk/Sci-Fi aes
 
 
 
+https://github.com/user-attachments/assets/694788c5-9211-4378-9818-afd142042c0c
+
+
+
 ---
 
 ## 🚀 Key Features
