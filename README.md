@@ -4,7 +4,7 @@
 
 A next-generation personal portfolio website built with a **Cyberpunk/Sci-Fi aesthetic**. This project goes beyond a static showcase, integrating a fully functional **Voice-Activated AI Assistant** that acts as a guide, answering questions about my experience, skills, and projects in real-time.
 
-![Cyberpunk UI](https://media.giphy.com/media/v1.Y2lkPTc5MGI3NjExNzJjYzEwY2EwY2EwY2EwY2EwY2EwY2EwY2EwY2EwY2EwY2Ew/xT9IgzoKnwFNmISR8I/giphy.gif) *(Replace with actual screenshot)*
+
 
 ---
 
