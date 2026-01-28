@@ -2,44 +2,36 @@ import React from 'react';
 import { Mic, MicOff, Send } from 'lucide-react';
 
 const InputBar = ({ input, setInput, handleTextSubmit, toggleListening, isListening }) => (
-    <div className="p-3 bg-black/80 border-t border-cyan-500/30 relative z-20">
-        <form onSubmit={handleTextSubmit} className="flex gap-2 items-end">
-            <div className="relative flex-1 group">
-                <div className="absolute left-0 top-0 bottom-0 w-1 bg-cyan-500/50" />
+    <div className="p-4 bg-white border-t border-slate-100">
+        <form onSubmit={handleTextSubmit} className="flex gap-2 items-center">
+            <div className="relative flex-1">
                 <input
                     type="text"
                     value={input}
                     onChange={e => setInput(e.target.value)}
-                    placeholder="ENTER_COMMAND..."
-                    className="relative w-full bg-cyan-950/10 border-b border-cyan-500/30 pl-3 pr-3 py-2 text-xs text-cyan-100 focus:border-cyan-400 focus:bg-cyan-950/30 focus:outline-none transition-all placeholder:text-cyan-800 font-mono tracking-wider"
+                    placeholder="Type your message..."
+                    className="w-full bg-slate-50 border border-slate-200 rounded-xl px-4 py-2.5 text-sm text-slate-700 focus:border-blue-500 focus:ring-2 focus:ring-blue-100 focus:outline-none transition-all placeholder:text-slate-400"
                 />
             </div>
             <button
                 type="button"
                 onClick={toggleListening}
-                className={`p-2 border transition-all duration-200 relative overflow-hidden group ${isListening
-                    ? 'bg-red-500/20 border-red-500 text-red-500'
-                    : 'bg-black border-cyan-500/50 text-cyan-400 hover:border-cyan-400'}`}
-                style={{ clipPath: 'polygon(10% 0, 100% 0, 100% 90%, 90% 100%, 0 100%, 0 10%)' }}
+                className={`p-2.5 rounded-xl transition-all duration-200 ${isListening
+                    ? 'bg-red-50 text-red-500 animate-pulse'
+                    : 'bg-slate-50 text-slate-400 hover:bg-slate-100 hover:text-slate-600'}`}
             >
-                {isListening ? <MicOff size={16} /> : <Mic size={16} />}
+                {isListening ? <MicOff size={18} /> : <Mic size={18} />}
             </button>
             <button
                 type="submit"
                 disabled={!input.trim()}
-                className="p-2 bg-cyan-900/20 border border-cyan-500/50 text-cyan-400 hover:bg-cyan-500 hover:text-black disabled:opacity-30 disabled:hover:bg-transparent disabled:hover:text-cyan-400 transition-all"
-                style={{ clipPath: 'polygon(10% 0, 100% 0, 100% 90%, 90% 100%, 0 100%, 0 10%)' }}
+                className="p-2.5 bg-blue-600 text-white rounded-xl hover:bg-blue-700 disabled:opacity-50 disabled:hover:bg-blue-600 transition-all shadow-sm"
             >
-                <Send size={16} />
+                <Send size={18} />
             </button>
         </form>
-        <div className="flex justify-between items-center mt-1 px-1">
-            <div className="text-[8px] text-cyan-800 tracking-[0.2em]">SECURE_CHANNEL_ACTIVE</div>
-            <div className="flex gap-1">
-                <div className="w-1 h-1 bg-cyan-500/50 animate-pulse" />
-                <div className="w-1 h-1 bg-cyan-500/30" />
-                <div className="w-1 h-1 bg-cyan-500/10" />
-            </div>
+        <div className="text-center mt-2 text-[10px] text-slate-300 font-medium">
+            Powered by Gemini • Portfolio Assistant
         </div>
     </div>
 );
